@@ -1,4 +1,4 @@
-Interaction Programing - Lab assignment - HTML
+Interactive Dinner Party Planner
 =================================================
 
-This project contains the startup code for HTML version of the Interaction Programing course lab assignment. For more details on how to complete the assignment follow the instructions on the [course website](https://www.kth.se/social/course/DH2641).
+An interactive dinner party planner website where you can choose recipes from a large database, customize your dinner, see ingredients, cooking instructions and total costs, and invite friends. You can also see each of your friends' profiles with their preferences, and see their confirmation to your planned dinner.
