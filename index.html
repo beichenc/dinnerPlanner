@@ -1,38 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dinner planner</title>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+        <!--Font-->
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,100,700,900' rel='stylesheet' type='text/css'>
 
-  </head>
-  <body>
-	<div class="container">
-		<h1>Dinner planner</h1>
-		<div id="exampleView">
-			<div>
-				Number of guests: <span id="numberOfGuests"></span>
-			</div>
-			<div>
-          <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
-				<button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
-			</div>
-		</div>
-	</div>
+        <!--Bootstrap css-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!--Own css-->
+        <link rel="stylesheet" href="css/dinnerPlanner.css" type='text/css'>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <title>Chikako's Recipe</title>
 
-	<!-- The application JavaScript code -->
-	<script src="js/app.js"></script>
-	<script src="js/model/dinnerModel.js"></script>
-	<script src="js/view/exampleView.js"></script>
-	<script src="js/view/exampleViewController.js"></script>
-  </body>
+        <style>
+
+
+
+        </style>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Chikako's Recipe</h1>
+                <p>From the best chefs in the world directly into your kitchen</p>
+            </div>
+
+            <div class="indexMain">
+                <h1 id="title">A Home Dinner Service</h1>
+                <p id="desc">Plan and carry out your dinner party using Chikako's Recipe. Pick your favorites from our selection of recipes and customize your dinner. Invite your friends and see their confirmation. See ingredients, cooking procedure and cost. Bon Appetite!</p>
+                <div id="createDinnerButton">
+                    <button id="createDinner" class="btn" onclick="window.location.href='selectDish.html'">Create new dinner</button>
+        			  </div>
+            </div>
+
+            <div class="footer">
+                <p>&copy; Beichen Chen 2017</p>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!--jQuery used on own website-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+      	<!-- The application JavaScript code -->
+      	<script src="js/app.js"></script>
+      	<script src="js/model/dinnerModel.js"></script>
+      	<script src="js/view/exampleView.js"></script>
+      	<script src="js/view/exampleViewController.js"></script>
+    </body>
+
 </html>
