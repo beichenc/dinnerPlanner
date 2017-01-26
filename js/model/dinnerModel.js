@@ -5,9 +5,9 @@ var DinnerModel = function() {
 	// and selected dinner options for dinner menu
 
   // Initially number of guests will be 0
-  this.numberOfGuests = 0;
+  var numberOfGuests = 0;
   // Initially menu will be an empty dictionary where the key is the type and value is the dish object.
-  this.menu = {
+  var menu = {
     "starter": "",
     "main dish": "",
     "dessert": "",
@@ -16,30 +16,30 @@ var DinnerModel = function() {
 
 
 	this.setNumberOfGuests = function(num) {
-    this.numberOfGuests = num;
+    numberOfGuests = num;
 	}
 
 	// should return
 	this.getNumberOfGuests = function() {
-    return this.numberOfGuests;
+    return numberOfGuests;
 	}
 
   this.increaseNumberOfGuests = function() {
-    this.numberOfGuests += 1;
+    numberOfGuests += 1;
   }
 
   this.decreaseNumberOfGuests = function() {
-    this.numberOfGuests -= 1;
+    numberOfGuests -= 1;
   }
 
 	//Returns the dish that is on the menu for selected type
 	this.getSelectedDish = function(type) {
-    return this.menu[type];
+    return menu[type];
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-    return this.menu;
+    return menu;
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
@@ -78,17 +78,17 @@ var DinnerModel = function() {
     var type = getDish(id).type;
 
     //Check if dish of the type is already on the menu, if it is, remove the old dish.
-    if (!this.menu[type].isEmpty()) {
-      this.menu[type] === "";
+    if (!menu[type].isEmpty()) {
+      menu[type] === "";
     }
     // Add the dish
-    this.menu[type] = getDish(id);
+    menu[type] = getDish(id);
 	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
     var type = getDish(id).type;
-    this.menu[type] === "";
+    menu[type] === "";
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
