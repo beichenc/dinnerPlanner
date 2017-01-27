@@ -152,6 +152,10 @@ a:hover {
   text-align: left;
 }
 
+.dishIngredients {
+  margin-left: 20px;
+}
+
 #desc {
   margin-left: 20px;
   margin-right: 20px;
