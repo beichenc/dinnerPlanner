@@ -8,10 +8,10 @@ var DinnerModel = function() {
   var numberOfGuests = 0;
   // Initially menu will be an empty dictionary where the key is the type and value is the dish object.
   var menu = {
-    "starter": "",
-    "main dish": "",
-    "dessert": "",
-    "drink": ""
+      /*"starter": null,
+      "main dish": null,
+      "dessert": null,
+      "drink": null*/
   };
 
 
@@ -20,6 +20,7 @@ var DinnerModel = function() {
 	}
 
 	// should return
+  // TESTED
 	this.getNumberOfGuests = function() {
     return numberOfGuests;
 	}
@@ -55,6 +56,20 @@ var DinnerModel = function() {
     return allIngredients;
 	}
 
+  //Returns the price of the selected dish (all ingredients)
+  // TESTED
+  this.getPrice = function(id) {
+    var totalPrice = 0;
+    var dish = this.getDish(id);
+    var ingredients = dish.ingredients;
+    for (key in ingredients) {
+      var ingredient = ingredients[key];
+      var price = ingredient.price;
+      totalPrice += price;
+    }
+    return totalPrice;
+  }
+
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
     var TotalMenuPrice = 0;
@@ -75,14 +90,15 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-    var type = getDish(id).type;
+    var type = this.getDish(id).type;
 
+    //TODO:
     //Check if dish of the type is already on the menu, if it is, remove the old dish.
-    if (!menu[type].isEmpty()) {
+    /*if (!menu[type].isEmpty()) {
       menu[type] === "";
-    }
+    }*/
     // Add the dish
-    menu[type] = getDish(id);
+    menu[type] = this.getDish(id);
 	}
 
 	//Removes dish from menu
@@ -94,6 +110,7 @@ var DinnerModel = function() {
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
+  // TESTED
 	this.getAllDishes = function (type,filter) {
 	  return dishes.filter(function(dish) {
 		var found = true;
@@ -114,6 +131,7 @@ var DinnerModel = function() {
 	}
 
 	//function that returns a dish of specific ID
+  //TESTED
 	this.getDish = function (id) {
 	  for(key in dishes){
 			if(dishes[key].id == id) {

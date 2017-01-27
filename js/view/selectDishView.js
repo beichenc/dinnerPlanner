@@ -4,8 +4,8 @@ var SelectDishView = function(container, model) {
   this.dishesPics = container.find(".dishesPics");
   this.dishesDesc = container.find(".dishesDesc")
 
-  for (index in this.mainCourses) {
-    var course = this.mainCourses[index];
+  for (key in this.mainCourses) {
+    var course = this.mainCourses[key];
     //console.log(course.image);
     this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<a href='" + course.link + "'>" + "<img src='images/" + course.image + "' id='" + course.name + "'>" + "</a></div>");
 

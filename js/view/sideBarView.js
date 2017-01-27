@@ -6,16 +6,17 @@ var SideBarView = function (container, model) {
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
+	this.entry = container.find(".nameAndCostEntry");
 
+	// Get relevant data from the model
+	this.fullMenu = model.getFullMenu();
+	model.addDishToMenu(100);
+
+	// Populate the view
 	this.numberOfGuests.html(model.getNumberOfGuests());
-
-	this.mainCourses = model.getAllDishes("main dish");
-
-	//this.dishesPics = container.find(".ggg");
-	/*for (course in this.mainCourses) {
-		this.dishesPics.append("<img src='course.image'>");
-		this.dishesPics.append("<p>Hello</p>");
-	}*/
-	//console.log(this.mainCourses[0].image);
-	//this.dishesPics.html("<img src='images/"+this.mainCourses[0].image+"'>");
+	for (key in this.fullMenu) {
+	  var course = this.fullMenu[key];
+		var price = model.getPrice(course.id);
+		this.entry.append("<div class='col-lg-6'><p>" + course.name + "</p></div><div id='cost'><p>" + price + "</p></div>");
+	}
 }
