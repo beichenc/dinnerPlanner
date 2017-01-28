@@ -27,10 +27,12 @@ var DinnerModel = function() {
 
   this.increaseNumberOfGuests = function() {
     numberOfGuests += 1;
+    console.log(numberOfGuests);
   }
 
   this.decreaseNumberOfGuests = function() {
     numberOfGuests -= 1;
+    console.log(numberOfGuests);
   }
 
 	//Returns the dish that is on the menu for selected type
@@ -62,11 +64,12 @@ var DinnerModel = function() {
     var dish = this.getDish(id);
     var ingredients = dish.ingredients;
     return ingredients;
-    
+  }
+
   //Returns the price of the selected dish (all ingredients)
   // TESTED
   this.getPrice = function(id) {
-    var totalPrice = 0;
+    var totalPrice = 0.00;
     var dish = this.getDish(id);
     var ingredients = dish.ingredients;
     for (key in ingredients) {
@@ -79,12 +82,13 @@ var DinnerModel = function() {
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-    var TotalMenuPrice = 0;
+    var TotalMenuPrice = 0.00;
 
-    for (var type in menu) {
+    for (type in menu) {
       var dish = menu[type];
       var ingredients = dish.ingredients;
-      for (var ingredient in ingredients) {
+      for (key in ingredients) {
+        var ingredient = ingredients[key];
         var price = ingredient.price;
         TotalMenuPrice += price;
       }
@@ -99,13 +103,14 @@ var DinnerModel = function() {
 	this.addDishToMenu = function(id) {
     var type = this.getDish(id).type;
 
-    //TODO:
+    //Edit: don't need to check because if it is on the menu it is automatically overwritten.
     //Check if dish of the type is already on the menu, if it is, remove the old dish.
     /*if (!menu[type].isEmpty()) {
       menu[type] === "";
     }*/
     // Add the dish
     menu[type] = this.getDish(id);
+    console.log(menu);
 	}
 
 	//Removes dish from menu
@@ -241,8 +246,9 @@ var DinnerModel = function() {
 		'type':'main dish',
 		'image':'meatballs.jpg',
     'link':'meatballs.html',
-		'description':"Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.",
-		'ingredients':[{
+		'description':"Yummy meatballs Swedish style. Perfect for combining with spaghetti or potatoes.",
+    'instructions': 'Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.',
+    'ingredients':[{
 			'name':'extra lean ground beef',
 			'quantity':115,
 			'unit':'g',
@@ -304,7 +310,8 @@ var DinnerModel = function() {
 		'type':'main dish',
 		'image':'bakedbrie.jpg',
     'link':'MD2.html',
-		'description':"Here is how you make it... Lore ipsum...",
+    'description': 'Main dish 2 - here is the description',
+		'instructions':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{
 			'name':'ingredient 1',
 			'quantity':1,
@@ -407,5 +414,4 @@ var DinnerModel = function() {
 			}]
 		}
 	];
-
 }

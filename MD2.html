@@ -33,69 +33,60 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="main" id="MD2View">
-                        <h1 id="title">Select dish</h1>
-                        <div class="row">
-                            <!-- Search input -->
-                            <div class="col-lg-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Search</button>
-                                    </span>
-                                </div>
-                            </div>
-                            <!-- Split button -->
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default">Choose dish type</button>
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Appetizer</a></li>
-                                    <li><a href="#">Main course</a></li>
-                                    <li><a href="#">Dessert</a></li>
-                                    <li><a href="#">Drinks</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
                         <!-- Dishes -->
-                        <div class="dishes">
-                            <div class="dishesPics">
-                                <!--<div class="inline" style="word-wrap: break-word; width: 150px" id="icecream">
-                                    <img src="images/icecream.jpg">
-                                    <p>Ice cream</p>
-                                    <p>Custard-style ice cream starts with a cooked base enriched with egg yolks, sugar, and cream. This style of ice cream has the smoothest, creamiest, richest texture and flavor.</p>
-                                </div>
-                                <div class="inline" style="word-wrap: break-word; width: 150px" id="meatballs">
-                                    <img src="images/meatballs.jpg">
-                                    <p>Meatballs</p>
-                                    <p>Our ultimate version of everyone's favorite family-night dinner has a super tender and robust meat mixture, slow-simmered and flavorful sauce, and tons of cheese.</p>
-                                </div>
-                                <div class="inline" style="word-wrap: break-word; width: 150px" id="sourdough">
-                                    <img src="images/sourdough.jpg">
-                                    <p>Sour dough</p>
-                                    <p>Sourdough is a dough containing a Lactobacillus culture in symbiotic combination with yeasts. It is one of the principal means of biological leavening in bread baking, the others using cultivated forms of yeast</p>
-                                </div>
-                                <div class="inline" style="word-wrap: break-word; width: 150px" id="toast">
-                                    <img src="images/toast.jpg">
-                                    <p>Toast</p>
-                                    <p>This French toast recipe is different because it uses flour. I have given it to some friends and they've all liked it better than the French toast they usually make!</p>
-                                </div> -->
-                            </div>
-                            <div class="dishesDesc">
+                        <div class="dish">
 
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="dishPic">
+                                        <!--Loaded using JavaScript-->
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <h1 id="dishName">Select dish</h1>
+                                    <div class="dishDesc">
+                                        <!--Loaded using javascript-->
+                                    </div>
+                                </div>
                             </div>
+
+                            <h1 align='left' style='margin-bottom: 20px' class="marginleft20">Ingredients</h1>
+                            <div class="row">
+                                <div class="col-lg-10">
+
+                                    <div class="dishIngredients">
+
+                                        <!-- Loaded using JavaScript -->
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="ingredientsPrice">
+                                        <!-- Loaded using JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="separator">
+                            </div>
+                            <div class="dishInstructions">
+                                <!-- Loaded using JavaScript -->
+                            </div>
+
+                            <div class="navButtons clearfix">
+                                <button class="btn pull-left" id="backButton">Back to select dish</button>
+                                <button class="btn pull-right" id="addDishButton">Add dish to basket</button>
+                      			</div>
+
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="aside">
+                    <div class="aside" id="sideBarView">
                         <h1>My dinner</h1>
 
-                        <div id="sideBarView">
+                        <div>
                     			<div class="someText">
                     				Number of guests: <span id="numberOfGuests"></span>
                     			</div>
@@ -115,21 +106,23 @@
                         </div>
 
                         <div class="row nameAndCostEntry">
-                            <div class="col-lg-6">
+                            <!--<div class="col-lg-6">
                                 <p>Pending</p>
                             </div>
                             <div id="cost">
                                 <p>0.00</p>
-                            </div>
+                            </div>-->
+                            <!-- Loaded using JavaScript-->
                         </div>
 
                         <div class="row nameAndCostTotal">
                             <div class="col-lg-6">
                                 <p>Total</p>
                             </div>
-                            <div id="cost">
+                            <!--<div id="cost">
                                 <p>SEK 0.00</p>
-                            </div>
+                            </div>-->
+                            <!-- Loaded using JavaScript -->
                         </div>
 
                         <div id="confirmDinnerButton">
