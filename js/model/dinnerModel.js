@@ -16,6 +16,7 @@ var DinnerModel = function() {
 
   // Events
   this.numberOfGuestsChanged = new Event(this);
+  this.courseAdded = new Event(this);
 
   // Methods
 	this.setNumberOfGuests = function(num) {
@@ -117,6 +118,7 @@ var DinnerModel = function() {
     // Add the dish
     menu[type] = this.getDish(id);
     console.log(menu);
+    this.courseAdded.notify(id);
 	}
 
 	//Removes dish from menu

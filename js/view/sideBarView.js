@@ -21,7 +21,7 @@ var SideBarView = function (container, model) {
 	// Events
 	this.plusButtonClicked = new Event(this);
 	this.minusButtonClicked = new Event(this);
-	console.log(typeof(this.plusButtonClicked));
+	//console.log(typeof(this.plusButtonClicked));
 
 	// Attach model listeners
 	model.numberOfGuestsChanged.attach(function() {
@@ -29,8 +29,9 @@ var SideBarView = function (container, model) {
 	});
 
 	// Attach listeners to HTML controls - question: is this supposed to be here or in the view controller
+
 	this.plusButton.click(function() {
-		console.log(typeof(_this.plusButtonClicked));
+		//console.log(typeof(_this.plusButtonClicked));
 		_this.plusButtonClicked.notify();
 	});
 
@@ -59,6 +60,12 @@ var SideBarView = function (container, model) {
 	// Methods
 	this.redisplayNumberOfGuests = function() {
 		_this.numberOfGuests.html(model.getNumberOfGuests());
+	}
+
+	this.displayCourse = function(dishID) {
+		var course = model.getDish(dishID);
+		var price = model.getPrice(dishID);
+		_this.entry.append("<div class='col-lg-6'><p>" + course.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
 	}
 
 }
