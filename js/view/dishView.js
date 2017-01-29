@@ -24,7 +24,7 @@ var DishView = function(container, model, dishID, sideBarView) {
     //console.log(dishID);
     if (id === dishID) {
       sideBarView.displayCourse(dishID);
-    }
+    };
 	});
 
 	// Attach listeners to HTML controls - question: is this supposed to be here or in the view controller
