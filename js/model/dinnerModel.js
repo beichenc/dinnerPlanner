@@ -14,7 +14,10 @@ var DinnerModel = function() {
       "drink": null*/
   };
 
+  // Events
+  this.numberOfGuestsChanged = new Event(this);
 
+  // Methods
 	this.setNumberOfGuests = function(num) {
     numberOfGuests = num;
 	}
@@ -28,11 +31,14 @@ var DinnerModel = function() {
   this.increaseNumberOfGuests = function() {
     numberOfGuests += 1;
     console.log(numberOfGuests);
+    this.numberOfGuestsChanged.notify();
   }
 
   this.decreaseNumberOfGuests = function() {
-    numberOfGuests -= 1;
-    console.log(numberOfGuests);
+    if (numberOfGuests > 0) {
+      numberOfGuests -= 1;
+      console.log(numberOfGuests);
+    }
   }
 
 	//Returns the dish that is on the menu for selected type

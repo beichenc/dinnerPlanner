@@ -8,4 +8,6 @@ $(function() {
 	var MD2View = new DishView($("#MD2View"), model, 101);
 	var meatballsView = new DishView($("#meatballsView"), model, 100);
 
+	var sideBarController = new viewController(model, sideBarView);
+
 });
