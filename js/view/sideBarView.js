@@ -28,6 +28,11 @@ var SideBarView = function (container, model) {
 		_this.redisplayNumberOfGuests();
 	});
 
+	model.courseAdded.attach(function(sender, id) {
+    console.log(id);
+    _this.displayCourse(id);
+	});
+
 	// Attach listeners to HTML controls - question: is this supposed to be here or in the view controller
 
 	this.plusButton.click(function() {
@@ -67,6 +72,9 @@ var SideBarView = function (container, model) {
 	this.redisplayNumberOfGuests = function() {
 		_this.numberOfGuests.html(model.getNumberOfGuests());
 	}
+
+
+
 
 	this.displayCourse = function(dishID) {
 		var course = model.getDish(dishID);

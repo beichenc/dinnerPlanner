@@ -11,19 +11,26 @@ var SelectDishView = function(container, model) {
   //var i = 0;
   // Populating the view with images and descriptions
   for (key in this.mainCourses) {
+
     var course = this.mainCourses[key];
-    this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px' id='" + course.name + "Div'>" + "<a href='javascript:void(0)' class='picLinks'>" + "<img src='images/" + course.image + "' id='" + course.name + "'>" + /*"</a>*/"</div>");
+    this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img src='images/" + course.image + "' id='" + course.name.replace(/\s+/g, '') + "'>" + "</div>");
     //this.picsIdList[i] =  course.name;
     this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + course.name + "</p>" + "<p>" + course.description +"</p>" + "</div>")
     //i++;
     //console.log(this.picsIdList);
     //console.log(course.name);
-    $(this.dishesPics.find("div img")).click(function() {
+
+    //console.log("#" + course.name.replace(/\s+/g, ''));
+    $("#"+ course.name.replace(/\s+/g, '')).click(function() {
       console.log(course.id);
       //_this.dishClicked.notify(_this, course.id);
       _this.dishClicked.notify(course.id);
     });
-  }
+
+    console.log(course.id);
+  };
+
+  console.log(course.id);
 
   // Testing
   this.dishClicked = new Event(this);

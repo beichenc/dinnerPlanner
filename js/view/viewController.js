@@ -27,16 +27,15 @@ var viewController = function(model, selectDishView, dishView, sideBarView) {
   });*/
 
 
-  selectDishView.dishClicked.attach(function(dishID) {
+  selectDishView.dishClicked.attach(function(sender, dishID) {
     document.getElementById("selectDishView").style.display = "none";
     // Here I want to set dishView.dishID to dishID but dishID is not a number, it is SelectDishView!!! Why?!
     // In selectDishView.js, I pass course.id to this method and course.id is a number, but when it comes to
     // this method it becomes SelectDishView... I have spent hours trying to solve this but it will not work.
-    dishView.dishID = 101;
+    dishView.dishID = dishID;
     console.log(dishID);
     document.getElementById("dishView").style.display = "block";
     //document.getElementById(view.container[0].id).innerHTML = dishView.container[0];
-
   });
 
   /*selectDishView.dishClicked.attach(function(selectedView, dishID) {

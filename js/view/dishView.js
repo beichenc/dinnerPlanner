@@ -21,18 +21,8 @@ var DishView = function(container, model, sideBarView) {
   this.addButtonClicked = new Event(this);
   this.backButtonClicked = new Event(this);
 
-  // Attach model listeners
-  model.courseAdded.attach(function(sender, id) {
-    //console.log(id);
-    console.log(_this.dishID);
-    if (id === _this.dishID) {
-      sideBarView.displayCourse(_this.dishID);
-    };
-	});
-
 	// Attach listeners to HTML controls - question: is this supposed to be here or in the view controller
 	this.addDishButton.click(function() {
-		//_this.addButtonClicked.notify();
     console.log(_this.dishID);
     _this.addButtonClicked.notify(_this.dishID);
 	});
