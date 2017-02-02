@@ -19,6 +19,7 @@ var DishView = function(container, model, sideBarView) {
 
   // Events
   this.addButtonClicked = new Event(this);
+  this.backButtonClicked = new Event(this);
 
   // Attach model listeners
   model.courseAdded.attach(function(sender, id) {
@@ -35,6 +36,10 @@ var DishView = function(container, model, sideBarView) {
     console.log(_this.dishID);
     _this.addButtonClicked.notify(_this.dishID);
 	});
+
+  this.backButton.click(function() {
+    _this.backButtonClicked.notify();
+  })
 
   // Displaying the title, image, and description
   this.courseName.html(this.course.name);

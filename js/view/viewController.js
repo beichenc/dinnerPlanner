@@ -26,7 +26,7 @@ var viewController = function(model, selectDishView, dishView, sideBarView) {
     model.addDishToMenu(dishID);
   });*/
 
-  // Hide and show views - Problem: the side bar is not positioned correctly at start. How to fix this?
+
   selectDishView.dishClicked.attach(function(dishID) {
     document.getElementById("selectDishView").style.display = "none";
     // Here I want to set dishView.dishID to dishID but dishID is not a number, it is SelectDishView!!! Why?!
@@ -49,5 +49,10 @@ var viewController = function(model, selectDishView, dishView, sideBarView) {
     //document.getElementById(view.container[0].id).innerHTML = dishView.container[0];
 
   });*/
+
+  dishView.backButtonClicked.attach(function() {
+    document.getElementById("dishView").style.display = "none";
+    document.getElementById("selectDishView").style.display = "block";
+  });
 
 }

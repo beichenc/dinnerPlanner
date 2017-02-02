@@ -1,19 +1,6 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
-  // Observer pattern
-  this.listeners = [];
-
-  this.attach = function(listener) {
-    this.listeners.push(listener);
-  }
-
-  this.notify = function(args) {
-    for (var i = 0; i < this.listeners.length; i++) {
-      this.listeners[i](sender, args);
-    }
-  }
-
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
 
