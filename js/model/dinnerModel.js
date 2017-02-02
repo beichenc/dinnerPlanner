@@ -1,6 +1,19 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
+  // Observer pattern
+  this.listeners = [];
+
+  this.attach = function(listener) {
+    this.listeners.push(listener);
+  }
+
+  this.notify = function(args) {
+    for (var i = 0; i < this.listeners.length; i++) {
+      this.listeners[i](sender, args);
+    }
+  }
+
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
 
@@ -115,10 +128,15 @@ var DinnerModel = function() {
     /*if (!menu[type].isEmpty()) {
       menu[type] === "";
     }*/
+
+    // If dish doesn't already exist in basket then update the view
+    if (!(menu[type] === this.getDish(id))) {
+      this.courseAdded.notify(id);
+    }
+
     // Add the dish
     menu[type] = this.getDish(id);
     console.log(menu);
-    this.courseAdded.notify(id);
 	}
 
 	//Removes dish from menu
