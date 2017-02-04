@@ -9,24 +9,6 @@ var viewController = function(model, selectDishView, dishView, sideBarView) {
     model.increaseNumberOfGuests();
   });
 
-  /*mainView.addButtonClicked.attach(function() {
-    console.log(mainView.dish.id);
-    model.addDishToMenu(mainView.dish.id);
-  });*/
-
-  // Can someone explain the sender part and why it can take two arguments when the attach function is defined so it takes one
-  dishView.addButtonClicked.attach(function(sender, dishID) {
-    console.log(dishID);
-    model.addDishToMenu(dishID);
-  });
-
-  // Am I supposed to "repeat code" here...
-  /*MD2View.addButtonClicked.attach(function(sender, dishID) {
-    console.log(dishID);
-    model.addDishToMenu(dishID);
-  });*/
-  //this.updateDishView = new Event();
-
   // What does "sender" mean?
   selectDishView.dishClicked.attach(function(sender, dishID) {
     document.getElementById("selectDishView").style.display = "none";
@@ -37,9 +19,38 @@ var viewController = function(model, selectDishView, dishView, sideBarView) {
     document.getElementById("dishView").style.display = "block";
   });
 
+  selectDishView.appetizerClicked.attach(function(sender, type) {
+    selectDishView.buildPage(type);
+  });
+
+  selectDishView.maindishClicked.attach(function(sender, type) {
+    selectDishView.buildPage(type);
+  });
+
+  selectDishView.dessertClicked.attach(function(sender, type) {
+    selectDishView.buildPage(type);
+  });
+
+  selectDishView.searchChanged.attach(function(sender, args) {
+    console.log(args[0]);
+    var type = args[0];
+    // Why is filter undefined here?
+    console.log(args[1]);
+    var filter = args[1];
+    selectDishView.buildPage(type, filter)
+  });
+
+  // Can someone explain the sender part and why it can take two arguments when the attach function is defined so it takes one
+  dishView.addButtonClicked.attach(function(sender, dishID) {
+    console.log(dishID);
+    model.addDishToMenu(dishID);
+  });
+
   dishView.backButtonClicked.attach(function() {
     document.getElementById("dishView").style.display = "none";
     document.getElementById("selectDishView").style.display = "block";
   });
+
+
 
 }
