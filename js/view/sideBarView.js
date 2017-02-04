@@ -4,7 +4,7 @@ var SideBarView = function (container, model) {
 	var _this = this;
 
 	// Get all the relevant elements of the view (ones that show data
-  	// and/or ones that responed to interaction)
+  // and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
@@ -28,9 +28,9 @@ var SideBarView = function (container, model) {
 		_this.redisplayNumberOfGuests();
 	});
 
-	model.courseAdded.attach(function(sender, id) {
+	model.dishAdded.attach(function(sender, id) {
     console.log(id);
-    _this.displayCourse(id);
+    _this.displayDish(id);
 	});
 
 	// Attach listeners to HTML controls - question: is this supposed to be here or in the view controller
@@ -58,9 +58,9 @@ var SideBarView = function (container, model) {
 
 	// Price of each dish
 	for (key in this.fullMenu) {
-	  var course = this.fullMenu[key];
-		var price = model.getPrice(course.id);
-		this.entry.append("<div class='col-lg-6'><p>" + course.name + "</p></div><div><p>" + price.toFixed(2) + "</p></div>");
+	  var dish = this.fullMenu[key];
+		var price = model.getPrice(dish.id);
+		this.entry.append("<div class='col-lg-6'><p>" + dish.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
 	}
 
 	// Total price for menu
@@ -73,13 +73,10 @@ var SideBarView = function (container, model) {
 		_this.numberOfGuests.html(model.getNumberOfGuests());
 	}
 
-
-
-
-	this.displayCourse = function(dishID) {
-		var course = model.getDish(dishID);
+	this.displayDish = function(dishID) {
+		var dish = model.getDish(dishID);
 		var price = model.getPrice(dishID);
-		_this.entry.append("<div class='col-lg-6'><p>" + course.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
+		_this.entry.append("<div class='col-lg-6'><p>" + dish.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
 	}
 
 }

@@ -16,7 +16,7 @@ var DinnerModel = function() {
 
   // Events
   this.numberOfGuestsChanged = new Event(this);
-  this.courseAdded = new Event(this);
+  this.dishAdded = new Event(this);
 
   // Methods
 	this.setNumberOfGuests = function(num) {
@@ -118,7 +118,7 @@ var DinnerModel = function() {
 
     // If dish doesn't already exist in basket then update the view
     if (!(menu[type] === this.getDish(id))) {
-      this.courseAdded.notify(id);
+      this.dishAdded.notify(id);
     }
 
     // Add the dish
