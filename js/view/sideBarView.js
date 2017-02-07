@@ -4,7 +4,7 @@ var SideBarView = function (container, model) {
 	var _this = this;
 
 	// Get all the relevant elements of the view (ones that show data
-  	// and/or ones that responed to interaction)
+  // and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
@@ -28,11 +28,18 @@ var SideBarView = function (container, model) {
 		_this.redisplayNumberOfGuests();
 	});
 
+	model.dishAdded.attach(function(sender, id) {
+    console.log(id);
+    _this.displayDish(id);
+	});
+
 	// Attach listeners to HTML controls - question: is this supposed to be here or in the view controller
 
 	this.plusButton.click(function() {
 		//console.log(typeof(_this.plusButtonClicked));
 		_this.plusButtonClicked.notify();
+		_this.totalCost = model.getTotalMenuPrice();
+	  _this.totalNumber[0].innerHTML = "SEK " + _this.totalCost.toFixed(2);
 	});
 
 	this.minusButton.click(function() {
@@ -40,6 +47,8 @@ var SideBarView = function (container, model) {
 		// Now how do I update the view to display this new number?
 		// Edit: now I got both the version with all the event handlers and .notify and .attach (the plus button), AND the simple version (the minus button) with this method to work. Why can't I just use the simple version here?
 		_this.numberOfGuests.html(model.getNumberOfGuests());
+		_this.totalCost = model.getTotalMenuPrice();
+	  _this.totalNumber[0].innerHTML = "SEK " + _this.totalCost.toFixed(2);
 	});
 
 	// Populate the view
@@ -49,23 +58,25 @@ var SideBarView = function (container, model) {
 
 	// Price of each dish
 	for (key in this.fullMenu) {
-	  var course = this.fullMenu[key];
-		var price = model.getPrice(course.id);
-		this.entry.append("<div class='col-lg-6'><p>" + course.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
+	  var dish = this.fullMenu[key];
+		var price = model.getPrice(dish.id);
+		this.entry.append("<div class='col-lg-6'><p>" + dish.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
 	}
 
 	// Total price for menu
-	this.total.append("<div id='cost'><p>SEK " + this.totalCost.toFixed(2) + "</p></div>");
+	this.total.append("<div id='totalCost'><p>SEK " + this.totalCost.toFixed(2) + "</p></div>");
+  this.totalNumber = container.find("#totalCost");
+	console.log(this.totalNumber[0]);
 
 	// Methods
 	this.redisplayNumberOfGuests = function() {
 		_this.numberOfGuests.html(model.getNumberOfGuests());
 	}
 
-	this.displayCourse = function(dishID) {
-		var course = model.getDish(dishID);
+	this.displayDish = function(dishID) {
+		var dish = model.getDish(dishID);
 		var price = model.getPrice(dishID);
-		_this.entry.append("<div class='col-lg-6'><p>" + course.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
+		_this.entry.append("<div class='col-lg-6'><p>" + dish.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
 	}
 
 }

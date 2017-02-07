@@ -31,14 +31,14 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="main" id="selectDishView">
+                <div class="col-lg-8" id="selectDishView">
+                    <div class="main">
                         <h1 id="title">Select dish</h1>
                         <div class="row">
                             <!-- Search input -->
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <input type="text" class="form-control" placeholder="Search for..." id="searchField">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="button">Search</button>
                                     </span>
@@ -52,16 +52,16 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Appetizer</a></li>
-                                    <li><a href="#">Main course</a></li>
-                                    <li><a href="#">Dessert</a></li>
-                                    <li><a href="#">Drinks</a></li>
+                                    <li id="appetizerChoice"><a href="#">Appetizer</a></li>
+                                    <li id="maindishChoice"><a href="#">Main dish</a></li>
+                                    <li id="dessertChoice"><a href="#">Dessert</a></li>
+                                    <!--<li id="drinksChoice"><a href="#">Drinks</a></li>-->
                                 </ul>
                             </div>
                         </div>
 
                         <!-- Dishes -->
-                        <div class="dishes">
+                        <div class="dishes active">
                             <div class="dishesPics">
                                 <!--<div class="inline" style="word-wrap: break-word; width: 150px" id="icecream">
                                     <img src="images/icecream.jpg">
@@ -91,8 +91,59 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="aside" id="sideBarView">
+                <div class="col-lg-8" id="dishView">
+                    <div class="main" >
+                        <!-- Dishes -->
+                        <div class="dish">
+
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="dishPic">
+                                        <!--Loaded using JavaScript-->
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <h1 id="dishName">Select dish</h1>
+                                    <div class="dishDesc">
+                                        <!--Loaded using javascript-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h1 align='left' style='margin-bottom: 20px' class="marginleft20">Ingredients</h1>
+                            <div class="row">
+                                <div class="col-lg-10">
+
+                                    <div class="dishIngredients">
+
+                                        <!-- Loaded using JavaScript -->
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="ingredientsPrice">
+                                        <!-- Loaded using JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="separator">
+                            </div>
+                            <div class="dishInstructions">
+                                <!-- Loaded using JavaScript -->
+                            </div>
+
+                            <div class="navButtons clearfix">
+                                <button class="btn pull-left" id="backButton">Back to select dish</button>
+                                <button class="btn pull-right" id="addDishButton">Add dish to basket</button>
+                      			</div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" id="sideBarView">
+                    <div class="aside" >
                         <h1>My dinner</h1>
 
                         <div>
@@ -141,9 +192,13 @@
                     </div>
                 </div>
 
+
+
+
+
             </div>
             <div class="footer">
-                <p>&copy; Beichen Chen 2017</p>
+                <p>&copy; Beichen Chen &amp; Lin Jinwei 2017</p>
             </div>
         </div>
 
@@ -157,13 +212,12 @@
       	<!-- The application JavaScript code -->
         <script src="js/script.js"></script>
       	<script src="js/app.js"></script>
-        <script src="js/eventDispatcher.js"></script>
+        <script src="js/observer.js"></script>
       	<script src="js/model/dinnerModel.js"></script>
       	<script src="js/view/sideBarView.js"></script>
         <script src="js/view/selectDishView.js"></script>
         <script src="js/view/dishView.js"></script>
         <script src="js/view/viewController.js"></script>
-        <script src="js/view/dishViewController.js"></script>
     </body>
 
 </html>

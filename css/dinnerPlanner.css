@@ -29,6 +29,7 @@ a:hover {
   text-decoration: none;
 }
 
+
 .navbar {
     position: fixed;
     top: 0;
@@ -217,6 +218,11 @@ a:hover {
 }
 
 #cost {
+  text-align: right;
+  margin-right: 20px;
+}
+
+#totalCost {
   text-align: right;
   margin-right: 20px;
 }
