@@ -29,7 +29,7 @@ var SideBarView = function (container, model) {
 	});
 
 	model.dishAdded.attach(function(sender, id) {
-    console.log(id);
+    //console.log(id);
     _this.displayDish(id);
 	});
 
@@ -78,5 +78,7 @@ var SideBarView = function (container, model) {
 		var price = model.getPrice(dishID);
 		_this.entry.append("<div class='col-lg-6'><p>" + dish.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
 	}
+
+
 
 }

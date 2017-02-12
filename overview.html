@@ -21,100 +21,101 @@
             </div>
 
 <div class="row">
-                <div class="col-lg-8" id="selectDishView">
+                <div class="col-lg-8" id="overviewView">
                     <div class="main">
-                        <h1 id="titleInOverview">My Dinner: 4 People</h1>
+                        <h1 id="titleInOverview">My Dinner: <span id = "numberOfGuests"></span> People</h1>
 
                         <!-- Dishes -->
                         <div class="dishes active">
-                            <div class="dishesPics"><div class="inline" style="word-wrap: break-word; width: 150px"><img src="images/meatballs.jpg" id="Meatballs"></div><div class="inline" style="word-wrap: break-word; width: 150px"><img src="images/meatballs.jpg" id="MD3"></div><div class="inline" style="word-wrap: break-word; width: 150px"><img src="images/meatballs.jpg" id="MD3" style="opacity: 1;"></div></div>
-                            <div class="dishesDesc"><div class="inline" style="word-wrap: break-word; width: 150px"><p>Meat balls</p><p>15kr</p></div><div class="inline" style="word-wrap: break-word; width: 150px"><p>MD 2</p><p>20kr</p></div><div class="inline" style="word-wrap: break-word; width: 150px"><p>MD 4</p><p>15kr</p></div></div>
+                            <div class="dishesPics">
+                            	<!-- Pics
+                            	<div class="inline" style="word-wrap: break-word; width: 150px">
+                            		<img src="images/meatballs.jpg" id="Meatballs">
+                            	</div>
+
+                            	<div class="inline" style="word-wrap: break-word; width: 150px">
+                            		<img src="images/meatballs.jpg" id="MD3">
+                            	</div>
+
+                            	<div class="inline" style="word-wrap: break-word; width: 150px">
+                            		<img src="images/meatballs.jpg" id="MD3" style="opacity: 1;">
+                            	</div>
+                                -->
+                            </div>
+                            
+                            <div class="dishesDesc">
+                            	<!-- Description
+                            	<div class="inline" style="word-wrap: break-word; width: 150px">
+                            		<p>Meat balls</p>
+                            		<p>15kr</p>
+                            	</div>
+
+                            	<div class="inline" style="word-wrap: break-word; width: 150px">
+                            		<p>MD 2</p>
+                            		<p>20kr</p>
+                            	</div>
+
+                            	<div class="inline" style="word-wrap: break-word; width: 150px">
+                            		<p>MD 4</p>
+                            		<p>15kr</p>
+                            	</div>
+                            	-->
+                            </div>
                         </div>
+                        <div id="BackButton">
+                        	<button id="Back" class="btn">Back</button>
+                		</div>
                     </div>
+                   
+
                 </div>
 
-                <div class="col-lg-8" id="dishView" style="display: none;">
-                    <div class="main">
-                        <!-- Dishes -->
-                        <div class="dish">
 
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="dishPic"><img src="images/meatballs.jpg" id="Meat balls" width="250" height="250"></div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <h1 id="dishName">Meat balls</h1>
-                                    <div class="dishDesc"><p>Yummy meatballs Swedish style. Perfect for combining with spaghetti or potatoes.</p></div>
-                                </div>
-                            </div>
-
-                            <h1 align="left" style="margin-bottom: 20px" class="marginleft20">Ingredients</h1>
-                            <div class="row">
-                                <div class="col-lg-10">
-
-                                    <div class="dishIngredients"><p align="left">extra lean ground beef 115 g</p><p align="left">sea salt 0.7 g</p><p align="left">small onion, diced 0.25 </p><p align="left">garlic salt 0.7 g</p><p align="left">Italian seasoning 0.6 g</p><p align="left">dried oregano 0.3 g</p><p align="left">crushed red pepper flakes 0.6 g</p><p align="left">Worcestershire sauce 6 ml</p><p align="left">milk 20 ml</p><p align="left">grated Parmesan cheese 5 g</p><p align="left">seasoned bread crumbs 15 g</p><p align="left" style="font-weight: 400; margin-top: 20px">All ingredients</p></div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="ingredientsPrice"><p align="left">20.00 SEK</p><p align="left">3.00 SEK</p><p align="left">2.00 SEK</p><p align="left">2.00 SEK</p><p align="left">3.00 SEK</p><p align="left">3.00 SEK</p><p align="left">3.00 SEK</p><p align="left">7.00 SEK</p><p align="left">4.00 SEK</p><p align="left">8.00 SEK</p><p align="left">4.00 SEK</p><p align="left" style="font-weight: 400; margin-top: 20px">59.00 SEK</p></div>
-                                </div>
-                            </div>
-
-                            <div class="separator">
-                            </div>
-                            <div class="dishInstructions"><h1 align="left" style="margin-bottom: 20px">Instructions</h1><p align="left">Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.</p></div>
-
-                            <div class="navButtons clearfix">
-                                <button class="btn pull-left" id="backButton">Back to select dish</button>
-                                <button class="btn pull-right" id="addDishButton">Add dish to basket</button>
-                      			</div>
-
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col-lg-4" id="sideBarView">
-                    <div class="aside">
-                        <h1>Total</h1>
-                        <h2>50kr</h2>
-                       
+                    <div class="aside" >
+                        <h1>My dinner</h1>
+
+                        <div>
+                    			<div class="someText">
+                    				Number of guests: <span id="numberOfGuests"></span>
+                    			</div>
+                    			<div>
+                              <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
+                    				<button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
+                    			</div>
+                    		</div>
 
                         <div class="row nameAndCost">
                             <div class="col-lg-6">
-                                <p><b>Dish name</b></p>
+                                <p>Dish name</p>
                             </div>
                             <div id="cost">
-                                <p><b>Cost</b></p>
-                            </div>
-                        </div>
-                        <div class="row nameAndCostDishes">
-                            <div class="col-lg-6">
-                                <p>Meat balls</p>
-                            </div>
-                            <div id="cost">
-                                <p>15kr</p>
-                            </div>
-                        </div>
-                        <div class="row nameAndCostDishes">
-                            <div class="col-lg-6">
-                                <p>MD2</p>
-                            </div>
-                            <div id="cost">
-                                <p>20kr</p>
-                            </div>
-                        </div>
-                        <div class="row nameAndCostDishes">
-                            <div class="col-lg-6">
-                                <p>MD3</p>
-                            </div>
-                            <div id="cost">
-                                <p>15kr</p>
+                                <p>Cost</p>
                             </div>
                         </div>
 
+                        <div class="row nameAndCostEntry">
+                            <!--<div class="col-lg-6">
+                                <p>Pending</p>
+                            </div>
+                            <div id="cost">
+                                <p>0.00</p>
+                            </div>-->
+                            <!-- Loaded using JavaScript -->
+                        </div>
+
+                        <div class="row nameAndCostTotal">
+                            <div class="col-lg-6">
+                                <p>Total</p>
+                            </div>
+                            <!--<div id="cost">
+                                <p>SEK 0.00</p>
+                            </div>-->
+                            <!-- Loaded using JavaScript -->
+                        </div>
 
                         <div id="confirmDinnerButton">
-                            <button id="confirmDinner" class="btn">Back</button>
-                            <p>       </p>
                             <button id="confirmDinner" class="btn">Confirm dinner</button>
                 			  </div>
 
@@ -131,5 +132,22 @@
                 <p>© Beichen Chen &amp; Lin Jinwei 2017</p>
             </div>
         </div>
+
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!--jQuery used on own website-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <script src="js/script.js"></script>
+      	<script src="js/app.js"></script>
+        <script src="js/observer.js"></script>
+      	<script src="js/model/dinnerModel.js"></script>
+      	<script src="js/view/sideBarView.js"></script>
+        <script src="js/view/selectDishView.js"></script>
+        <script src="js/view/dishView.js"></script>
+        <!--<script src="js/view/viewController.js"></script>-->
+        <script src = "js/view/overviewView.js"> </script>
+        <script src="js/view/preparationView.js"></script>
 </body>
 </html>>

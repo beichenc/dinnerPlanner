@@ -123,7 +123,7 @@ var DinnerModel = function() {
 
     // Add the dish
     menu[type] = this.getDish(id);
-    console.log(menu);
+    //console.log(menu);
 	}
 
 	//Removes dish from menu
@@ -214,6 +214,7 @@ var DinnerModel = function() {
 		'image':'sourdough.jpg',
     'link':'sourdough.html',
 		'description':"Here is how you make it... Lore ipsum...",
+		'instructions': "Combine ¾ cup flour and ½ cup warm water in a glass or plastic container. Make sure the container can hold about 2 quarts,to avoid overflow. Stir vigorously to incorporate air; cover with a breathable lid. Leave in a warm place, 70-85°F, for 12-24 hours.",
 		'ingredients':[{
 			'name':'active dry yeast',
 			'quantity':0.5,
@@ -407,6 +408,7 @@ var DinnerModel = function() {
 		'image':'icecream.jpg',
     'link':'icecream.html',
 		'description':"Here is how you make it... Lore ipsum...",
+		'instructions':"Temper the eggs: After warming the milk on its own, whisk just a small scoop of the hot milk into the eggs and sugar. This warms the eggs just a bit, making them less likely to curdle when you stir them into the pot with the rest of the milk and then start cooking everything over direct heat. Heat the base slow and low: Once you start cooking the ice cream base — the mix of milk, eggs, and sugar — on the stove, keep the heat low and heat everything slowly. Keep stirring, scraping the bottom and sides of the pot, so the mixture cooks evenly and the bottom doesn't scorch. It's tempting to turn up the heat to make this step go faster, but try to resist! ",
 		'ingredients':[{
 			'name':'ice cream',
 			'quantity':100,
