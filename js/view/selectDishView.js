@@ -1,20 +1,7 @@
 var SelectDishView = function(container, model) {
 
-  /*$(document).ready(function() {
-    for (key in this.dishes) {
-      var dish = this.dishes[key];
-      $("#"+ dish.name.replace(/\s+/g, '')).click(createCallBack(dish.id));
-    }
-  });
-
-  var createCallBack = function(dish.id) {
-    return function() {
-        _this.dishClicked.notify(dish.id);
-      };
-  };*/
-
   var _this = this;
-  this.type = "main dish"; //Default as main dish
+  //this.type = "main dish"; //Default as main dish
 
   // Finding the elements in the view HTML.
   this.dishesPics = container.find(".dishesPics");
@@ -65,46 +52,38 @@ var SelectDishView = function(container, model) {
     this.dishesPics.html("");
     this.dishesDesc.html("");
 
+    //If first time loaded
+    if (type === "") {
+      this.dishesPics.append("<p align='left' id='pleaseSelect'>Please select a dish type</p>");
+    }
+
     // Getting data from the model.
     // To implement later: this data should change depending on what type the user selects in the view.
     this.dishes = model.getAllDishes(type, filter);
-    console.log(this.dishes);
 
-    //var i = 0;
     // Populating the view with images and descriptions
     for (key in this.dishes) {
 
       var dish = this.dishes[key];
-      this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img src='images/" + dish.image + "' id='" + dish.name.replace(/\s+/g, '') + "'>" + "</div>");
-      //this.picsIdList[i] =  dish.name;
-      this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + dish.name + "</p>" + "<p>" + dish.description +"</p>" + "</div>")
-      //i++;
-      //console.log(this.picsIdList);
-      //console.log(dish.name);
+      var thumbnailView = new ThumbnailView($(".dishesPics"), model, dish);
+      //var thumbnailViewController = new ThumbnailViewController(model, thumbnailView);
 
-      $("#"+ dish.name.replace(/\s+/g, '')).click(function() {
+      //this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img src='images/" + dish.image + "' id='" + dish.name.replace(/\s+/g, '') + "'>" + "</div>");
+      this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + dish.name + "</p>" + "<p>" + dish.description +"</p>" + "</div>")
+
+
+      /*thumbnailView.img.click(function() {
+        console.log(thumbnailView.dish.id);
+        _this.dishClicked.notify(thumbnailView.dish.id);
+      });*/
+
+      container.find("#"+ dish.name.replace(/\s+/g, '')).click(function() {
         //console.log(dish.id);
           _this.dishClicked.notify(dish.id);
       });
-
-      console.log(dish.id);
+      
     };
+  };
 
-    //console.log(dish.id);
-
-  }
-
-  this.buildPage("main dish");
-
-  // Testing
-
-
-  /*this.dishesPics.click(function() {
-    _this.dishClicked.notify(this);
-  })*/
-
-  /*for (key in this.picsIdList) {
-    var id = this.picsIdList[key];
-    console.log(id);
-  }*/
-}
+  this.buildPage("");
+};

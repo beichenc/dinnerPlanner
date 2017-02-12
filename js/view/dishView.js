@@ -1,5 +1,5 @@
 // Is it correct to have sideBarView as a parameter so that I can change the number of guests displayed in sideBarView from this view?
-var DishView = function(container, model, sideBarView) {
+var DishView = function(container, model) {
 
   var _this = this;
   this.dishID = 100;
