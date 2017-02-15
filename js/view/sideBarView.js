@@ -16,10 +16,6 @@ var SideBarView = function (container, model) {
 	this.fullMenu = model.getFullMenu();
 	this.totalCost = model.getTotalMenuPrice();
 
-	// Events
-	this.plusButtonClicked = new Event(this);
-	this.minusButtonClicked = new Event(this);
-
 	// Attach model listeners
 	model.numberOfGuestsChanged.attach(function() {
 		_this.redisplayNumberOfGuests();
@@ -27,18 +23,6 @@ var SideBarView = function (container, model) {
 
 	model.dishAdded.attach(function() {
     _this.redisplayDishes();
-		_this.redisplayTotalCost();
-	});
-
-	// Attach listeners to HTML controls - question: is this supposed to be here or in the view controller
-
-	this.plusButton.click(function() {
-		_this.plusButtonClicked.notify();
-		_this.redisplayTotalCost();
-	});
-
-	this.minusButton.click(function() {
-		_this.minusButtonClicked.notify();
 		_this.redisplayTotalCost();
 	});
 
@@ -57,7 +41,6 @@ var SideBarView = function (container, model) {
 	// Total price for menu
 	this.total.append("<div id='totalCost'><p>SEK " + this.totalCost.toFixed(2) + "</p></div>");
   this.totalNumber = container.find("#totalCost");
-	//console.log(this.totalNumber[0]);
 
 	// Methods
 	this.redisplayNumberOfGuests = function() {

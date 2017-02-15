@@ -8,9 +8,9 @@ $(function() {
 	var dishView = new DishView($("#dishView"), model);
 
 	var sideBarViewController = new SideBarViewController(model, sideBarView);
-	var selectDishViewController = new SelectDishViewController(model, selectDishView, dishView);
+	var selectDishViewController = new SelectDishViewController(model, selectDishView);
 	var dishViewController = new DishViewController(model, dishView);
-	var controller = new viewController(model, sideBarViewController, selectDishViewController, dishViewController);
+	var controller = new viewController(model, sideBarView, selectDishView, dishView);
 
 
 });

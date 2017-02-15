@@ -1,11 +1,13 @@
 var SideBarViewController = function(model, sideBarView) {
 
-  sideBarView.plusButtonClicked.attach(function() {
+  sideBarView.plusButton.click(function() {
     model.increaseNumberOfGuests();
+    sideBarView.redisplayTotalCost();
   });
 
-  sideBarView.minusButtonClicked.attach(function() {
+  sideBarView.minusButton.click(function() {
     model.decreaseNumberOfGuests();
+    sideBarView.redisplayTotalCost();
   })
 
 }

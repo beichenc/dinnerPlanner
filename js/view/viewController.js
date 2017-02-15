@@ -1,13 +1,20 @@
-var viewController = function(model, sideBarViewController, selectDishViewController, dishViewController) {
+var viewController = function(model, sideBarView, selectDishView, dishView) {
 
   $(document).ready(function() {
-    document.getElementById("dishView").style.display = "none";
+    dishView.container[0].style.display = "none";
   });
 
-  // Is it ok to "access" the dishView like this? Or should I send some message from the dishViewController instead? How would I do that without having to create ANOTHER new Event? In that case the dishViewController will be observing the dishView, and the viewController would be observing the dishViewController...
-  dishViewController.dishView.backButtonClicked.attach(function() {
-    document.getElementById("dishView").style.display = "none";
-    document.getElementById("selectDishView").style.display = "block";
+  selectDishView.dishesPics.on("click", "img", function() {
+    document.getElementById("selectDishView").style.display = "none";
+    var dishID = $(this).attr('dishID');
+    dishView.dishID = dishID;
+    dishView.buildPage();
+    document.getElementById("dishView").style.display = "block";
+  });
+
+  dishView.backButton.click(function() {
+    dishView.container[0].style.display = "none";
+    selectDishView.container[0].style.display = "block";
   })
 
 
