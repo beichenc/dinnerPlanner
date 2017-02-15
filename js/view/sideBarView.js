@@ -24,6 +24,7 @@ var SideBarView = function (container, model) {
 	model.dishAdded.attach(function() {
     _this.redisplayDishes();
 		_this.redisplayTotalCost();
+
 	});
 
 	// Populate the view
@@ -64,10 +65,11 @@ var SideBarView = function (container, model) {
 		_this.totalCost = model.getTotalMenuPrice();
 		_this.totalNumber[0].innerHTML = "SEK " + _this.totalCost.toFixed(2);
 	}
-
+  
 	/*this.update = function() {
 		_this.numberOfGuests.html(model.getNumberOfGuests());
 	}*/
+
 
 
 }
