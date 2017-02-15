@@ -3,8 +3,10 @@
 var SelectDishViewController = function(model, selectDishView, dishView) {
 
   // What does "sender" mean?
-  selectDishView.dishClicked.attach(function(sender, dishID) {
+  selectDishView.dishClicked.attach(function(sender, dish) {
     document.getElementById("selectDishView").style.display = "none";
+    var dishID = $("#"+dish.name.replace(/\s+/g, '')).attr('dishID');
+    console.log(dishID);
     dishView.dishID = dishID;
     console.log(dishView.dishID);
     dishView.buildPage();

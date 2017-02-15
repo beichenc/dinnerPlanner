@@ -78,10 +78,10 @@ var SelectDishView = function(container, model) {
       });*/
 
       container.find("#"+ dish.name.replace(/\s+/g, '')).click(function() {
-        //console.log(dish.id);
-          _this.dishClicked.notify(dish.id);
+        console.log(dish.id + " selectDishView");
+          _this.dishClicked.notify(dish);
       });
-      
+
     };
   };
 
