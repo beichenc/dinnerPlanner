@@ -6,6 +6,14 @@ var viewController = function(model, indexView, sideBarView, selectDishView, dis
     dishView.container[0].style.display = "none";
     overviewView.container[0].style.display = "none";
     preparationView.container[0].style.display = "none";
+
+    $(".dishes").on("mouseenter", "img", function(){
+      $(this).animate({"opacity": 0.7}, 500);
+    });
+
+    $(".dishes").on("mouseleave", "img", function(){
+      $(this).animate({"opacity": 1}, 500);
+    });
   });
 
   indexView.createDinnerButton.click(function() {
