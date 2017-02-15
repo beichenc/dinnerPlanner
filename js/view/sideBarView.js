@@ -9,8 +9,10 @@ var SideBarView = function (container, model) {
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
+	this.confirmDinnerButton = container.find("#confirmDinner");
 	this.entry = container.find(".nameAndCostEntry");
 	this.total = container.find(".nameAndCostTotal");
+	this.container = container;
 
 	// Get relevant data from the model
 	this.fullMenu = model.getFullMenu();
@@ -65,7 +67,7 @@ var SideBarView = function (container, model) {
 		_this.totalCost = model.getTotalMenuPrice();
 		_this.totalNumber[0].innerHTML = "SEK " + _this.totalCost.toFixed(2);
 	}
-  
+
 	/*this.update = function() {
 		_this.numberOfGuests.html(model.getNumberOfGuests());
 	}*/

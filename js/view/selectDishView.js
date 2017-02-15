@@ -20,7 +20,7 @@ var SelectDishView = function(container, model) {
 
     //If first time loaded
     if (type === "") {
-      this.dishesPics.append("<p align='left' id='pleaseSelect'>Please select a dish type</p>");
+      this.dishesPics.append("<p id='pleaseSelect'>Please select a dish type</p>");
     }
 
     // Getting data from the model.

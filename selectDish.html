@@ -7,7 +7,6 @@
 
         <!--Font-->
         <link href='https://fonts.googleapis.com/css?family=Lato:400,300,100,700,900' rel='stylesheet' type='text/css'>
-
         <!--Bootstrap css-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <!--Own css-->
@@ -25,12 +24,23 @@
 
     <body>
         <div class="container">
+            <!-- Header -->
             <div class="header">
                 <a href="index.html"><div><h1>Chikako's Recipe</h1></div></a>
                 <p>From the best chefs in the world directly into your kitchen</p>
             </div>
 
+            <!-- IndexView, the home page -->
+            <div class="indexMain" id="indexView">
+                <h1 id="title">A Home Dinner Service</h1>
+                <p id="desc">Plan and carry out your dinner party using Chikako's Recipe. Pick your favorites from our selection of recipes and customize your dinner. Invite your friends and see their confirmation. See ingredients, cooking procedure and cost. Bon Appetite!</p>
+                <div id="createDinnerButton">
+                    <button id="createDinner" class="btn">Create new dinner</button>
+        			  </div>
+            </div>
+
             <div class="row">
+                <!-- SelectDishView, where we select the dishes -->
                 <div class="col-lg-8" id="selectDishView">
                     <div class="main">
                         <h1 id="title">Select dish</h1>
@@ -91,6 +101,7 @@
                     </div>
                 </div>
 
+                <!-- DishView, where dish details are displayed -->
                 <div class="col-lg-8" id="dishView">
                     <div class="main" >
                         <!-- Dishes -->
@@ -142,6 +153,7 @@
                     </div>
                 </div>
 
+                <!-- SideBarView, where we see our basket of selected dishes, their costs and the total cost -->
                 <div class="col-lg-4" id="sideBarView">
                     <div class="aside" >
                         <h1>My dinner</h1>
@@ -191,14 +203,83 @@
 
                     </div>
                 </div>
-
-
-
-
-
             </div>
+
+            <!-- OverviewView, where we see an overview of our selected dishes and their costs -->
+            <div class="main marginright70" id="overviewView">
+                <h1 id="titleInOverview">My Dinner: <span id = "numberOfGuests"></span> People</h1>
+
+                <!-- Dishes -->
+                <div class="dishes active">
+                    <div class="dishesPics">
+                      <!-- Pics
+                      <div class="inline" style="word-wrap: break-word; width: 150px">
+                        <img src="images/meatballs.jpg" id="Meatballs">
+                      </div>
+
+                      <div class="inline" style="word-wrap: break-word; width: 150px">
+                        <img src="images/meatballs.jpg" id="MD3">
+                      </div>
+
+                      <div class="inline" style="word-wrap: break-word; width: 150px">
+                        <img src="images/meatballs.jpg" id="MD3" style="opacity: 1;">
+                      </div>
+                        -->
+                    </div>
+
+                    <div class="dishesDesc">
+                      <!-- Description
+                      <div class="inline" style="word-wrap: break-word; width: 150px">
+                        <p>Meat balls</p>
+                        <p>15kr</p>
+                      </div>
+
+                      <div class="inline" style="word-wrap: break-word; width: 150px">
+                        <p>MD 2</p>
+                        <p>20kr</p>
+                      </div>
+
+                      <div class="inline" style="word-wrap: break-word; width: 150px">
+                        <p>MD 4</p>
+                        <p>15kr</p>
+                      </div>
+                      -->
+                    </div>
+                </div>
+                <div class="separatorInOverview">
+                </div>
+
+                <div id="totalCostInOverviewDiv">
+
+                </div>
+
+                <div>
+                  <button id="backButtonOverview" class="btn">Back</button>
+                  <button id="printFullRecipeButton" class="btn">Print Full Recipe</button>
+                </div>
+            </div>
+
+
+            <!-- PreparationView, where we see our selected dishes and how to prepare them -->
+            <div class="main marginright70" id="preparationView">
+            <h1 id="titleInPreparationView">My Dinner: <span id = "numberOfGuests"></span> People</h1>
+
+
+    	    			<div id="preparationList">
+    						<!-- Loaded with JavaScript-->
+
+
+    						</div>
+
+    	    			<div class="">
+    								<button id="backButtonPrep" class="btn">Back</button>
+    						</div>
+
+    				</div>
+
+            <!-- Footer -->
             <div class="footer">
-                <p>&copy; Beichen Chen &amp; Lin Jinwei 2017</p>
+                <p>&copy; Beichen Chen &amp; Jinwei Lin 2017</p>
             </div>
         </div>
 
@@ -214,12 +295,13 @@
       	<script src="js/app.js"></script>
         <script src="js/observer.js"></script>
       	<script src="js/model/dinnerModel.js"></script>
+        <script src="js/view/indexView.js"></script>
       	<script src="js/view/sideBarView.js"></script>
         <script src="js/view/selectDishView.js"></script>
         <script src="js/view/dishView.js"></script>
-        <script src="js/view/viewController.js"></script>
         <script src="js/view/overviewView.js"> </script>
         <script src="js/view/preparationView.js"></script>
+        <script src="js/view/viewController.js"></script>
         <script src="js/view/sideBarViewController.js"></script>
         <script src="js/view/selectDishViewController.js"></script>
         <script src="js/view/dishViewController.js"></script>
