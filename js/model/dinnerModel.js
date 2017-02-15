@@ -1,17 +1,37 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
-	//TODO Lab 2 implement the data structure that will hold number of guest
-	// and selected dinner options for dinner menu
+	/*// Observers - The part that is in observer.js doesn't work if I move it here.
+  this.listeners = [];
+
+  this.attach = function(listener) {
+    this.listeners.push(listener);
+  }
+
+  this.notify = function(args) {
+    for (var i = 0; i < this.listeners.length; i++) {
+      this.listeners[i](sender, args);
+    }
+  }
+
+  this.addObserver = function(listener) {
+    var len = this.listeners.length;
+    this.listeners[len] = listener;
+    //console.log(this.listeners);
+  }
+
+  // It didn't work when this was a var notifyObservers = function(obj). this.listeners became undefined.
+  this.notifyObservers = function(obj) {
+    for (key in this.listeners) {
+      this.listeners[key].update();
+    }
+  }*/
 
   // Initially number of guests will be 0
   var numberOfGuests = 0;
   // Initially menu will be an empty dictionary where the key is the type and value is the dish object.
   var menu = {
-      /*"starter": null,
-      "main dish": null,
-      "dessert": null,
-      "drink": null*/
+
   };
 
   // Events
@@ -33,12 +53,15 @@ var DinnerModel = function() {
     numberOfGuests += 1;
     console.log(numberOfGuests);
     this.numberOfGuestsChanged.notify();
+
+    //this.notifyObservers();
   }
 
   this.decreaseNumberOfGuests = function() {
     if (numberOfGuests > 0) {
       numberOfGuests -= 1;
       console.log(numberOfGuests);
+      this.numberOfGuestsChanged.notify();
     }
   }
 
@@ -118,12 +141,11 @@ var DinnerModel = function() {
 
     // If dish doesn't already exist in basket then update the view
     if (!(menu[type] === this.getDish(id))) {
-      this.dishAdded.notify(id);
+      // Add the dish
+      menu[type] = this.getDish(id);
+      console.log(menu);
+      this.dishAdded.notify();
     }
-
-    // Add the dish
-    menu[type] = this.getDish(id);
-    //console.log(menu);
 	}
 
 	//Removes dish from menu
