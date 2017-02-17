@@ -21,10 +21,11 @@ var SideBarView = function (container, model) {
 	// Attach model listeners
 	model.numberOfGuestsChanged.attach(function() {
 		_this.redisplayNumberOfGuests();
+		_this.redisplayTotalCost()
 	});
 
 	model.dishAdded.attach(function() {
-    _this.redisplayDishes();
+    	_this.redisplayDishes();
 		_this.redisplayTotalCost();
 
 	});

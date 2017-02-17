@@ -34,9 +34,12 @@ var DinnerModel = function() {
 
   };
 
+  var api_results;
+
   // Events
   this.numberOfGuestsChanged = new Event(this);
   this.dishAdded = new Event(this);
+  this.apiResultsObtained = new Event(this);
 
   // Methods
 	this.setNumberOfGuests = function(num) {
@@ -159,22 +162,46 @@ var DinnerModel = function() {
 	//if you don't pass any filter all the dishes will be returned
   // TESTED
 	this.getAllDishes = function (type,filter) {
-	  return dishes.filter(function(dish) {
-		var found = true;
-		if(filter){
-			found = false;
-			dish.ingredients.forEach(function(ingredient) {
-				if(ingredient.name.indexOf(filter)!=-1) {
+		$.ajax( {
+		   url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search',
+		   headers: {
+		     'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'
+		   },
+		   data: {
+		   	 'cuisine' : type,
+		   	 'instructionsRequired' : true
+		   },
+		   success: function(data) {
+		     console.log(data);
+		     console.log("111");
+		     console.log(data.results);
+		     console.log("222");
+		     api_results = data.results;
+		     this.apiResultsObtained.notify(api_results);
+		   },
+		   error: function(data) {
+		     console.log(data)
+		   }
+		 }) 
+
+
+		  /*return dishes.filter(function(dish) {
+			var found = true;
+			if(filter){
+				found = false;
+				dish.ingredients.forEach(function(ingredient) {
+					if(ingredient.name.indexOf(filter)!=-1) {
+						found = true;
+					}
+				});
+				if(dish.name.indexOf(filter) != -1)
+				{
 					found = true;
 				}
-			});
-			if(dish.name.indexOf(filter) != -1)
-			{
-				found = true;
 			}
-		}
-	  	return dish.type == type && found;
-	  });
+
+		  	return dish.type == type && found;
+		  });*/
 	}
 
 	//function that returns a dish of specific ID

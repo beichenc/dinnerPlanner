@@ -6,7 +6,7 @@ $(function() {
 	var indexView = new IndexView($("#indexView"), model);
 	var sideBarView = new SideBarView($("#sideBarView"), model);
 	var selectDishView = new SelectDishView($("#selectDishView"), model);
-  var dishView = new DishView($("#dishView"), model);
+    var dishView = new DishView($("#dishView"), model);
 	var overviewView = new OverviewView($("#overviewView"), model);
 	var preparationView = new PreparationView($("#preparationView"), model);
 
