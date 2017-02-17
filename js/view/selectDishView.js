@@ -25,22 +25,26 @@ var SelectDishView = function(container, model) {
 
     // Getting data from the model.
     // To implement later: this data should change depending on what type the user selects in the view.
-    
-    this.dishes = model.getAllDishes(type, filter);
-    model.apiResultsObtained.attach(function(sender, api_results) {
+
+    model.getAllDishes(type, filter, function(api_results) {
+      _this.dishes = api_results;
+      console.log(_this.dishes);
+
+    });
+    /*model.apiResultsObtained.attach(function(sender, api_results) {
       this.dishes = api_results;
-    })
-    console.log(this.dishes);
+    })*/
 
     // Populating the view with images and descriptions
-    for (key in this.dishes) {
+    for (key in _this.dishes) {
 
-      var dish = this.dishes[key];
+      var dish = _this.dishes[key];
 
-      this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img dishID='" + dish.id + "' src='images/" + dish.image + "' id='" + dish.name.replace(/\s+/g, '') + "'>" + "</div>");
-      this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + dish.title + "</p>" + "<p>" + dish.description +"</p>" + "</div>")
+      _this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img dishID='" + dish.id + "' src='https://spoonacular.com/recipeImages/" + dish.image + "' id='" + dish.title.replace(/\s+/g, '') + "' height='150px' width='150px'>" + "</div>");
+      _this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + dish.title + "</p>" + "<p>" + dish.description +"</p>" + "</div>")
 
     };
+
   };
 
   this.buildPage("");
