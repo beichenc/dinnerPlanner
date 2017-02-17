@@ -26,28 +26,44 @@ var DishView = function(container, model) {
     this.instructions.html("");
 
     // Getting info from model
-    this.dish = model.getDish(this.dishID);
-    this.ingredients = model.getIngredients(this.dishID);
+    model.getIngredients(this.dishID, function(ingredientsResults) {
+      _this.ingredients = ingredientsResults;
+    });
+
+    model.getDish(this.dishID, function(dishResults) {
+      _this.dish = dishResults;
+      //console.log(_this.dish);
+
+      _this.dishName.html(_this.dish.title);
+      _this.dishPic.append("<img src='" + _this.dish.image + "' id='" + _this.dish.title + "' width='250' height='250'>");
+      _this.dishDesc.append("<p>" + _this.dish.description +"</p>");
+
+      // Displaying the ingredients
+      for (key in _this.ingredients) {
+        var ingredient = _this.ingredients[key];
+        _this.ingredientList.append("<p align='left'>" + ingredient.name + " " + ingredient.amount + " " + ingredient.unit + "</p>");
+        _this.ingredientsPrice.append("<p align='left'>" + ingredient.amount.toFixed(2) + " SEK</p>");
+      }
+      // Displaying the total
+      _this.ingredientList.append("<p align='left' style='font-weight: 400; margin-top: 20px'>" + "All ingredients" + "</p>");
+      model.getPrice(_this.dishID, function(totalPrice) {
+        _this.totalPrice = totalPrice;
+        _this.ingredientsPrice.append("<p align='left' style='font-weight: 400; margin-top: 20px'>" + _this.totalPrice.toFixed(2) + " SEK</p>");
+      })
+
+      // Displaying the instructions
+      _this.instructions.append("<h1 align='left' style='margin-bottom: 20px'>Instructions</h1>");
+      _this.instructions.append("<p align='left'>" + _this.dish.instructions + "</p>");
+
+    });
+
+    //this.dish = model.getDish(this.dishID);
+    //this.ingredients = model.getIngredients(this.dishID);
 
     // Displaying the title, image, and description
-    this.dishName.html(this.dish.name);
-    this.dishPic.append("<img src='images/" + this.dish.image + "' id='" + this.dish.name + "' width='250' height='250'>");
-    this.dishDesc.append("<p>" + this.dish.description +"</p>")
+    //console.log(_this.dish);
+    //console.log(_this.ingredients);
 
-    // Displaying the ingredients
-    for (key in this.ingredients) {
-      var ingredient = this.ingredients[key];
-      this.ingredientList.append("<p align='left'>" + ingredient["name"] + " " + ingredient["quantity"] + " " + ingredient["unit"] + "</p>");
-      this.ingredientsPrice.append("<p align='left'>" + ingredient["price"].toFixed(2) + " SEK</p>");
-    }
-    // Displaying the total
-    this.ingredientList.append("<p align='left' style='font-weight: 400; margin-top: 20px'>" + "All ingredients" + "</p>");
-    this.ingredientsPrice.append("<p align='left' style='font-weight: 400; margin-top: 20px'>" + model.getPrice(this.dishID).toFixed(2) + " SEK</p>");
-
-
-    // Displaying the instructions
-    this.instructions.append("<h1 align='left' style='margin-bottom: 20px'>Instructions</h1>");
-    this.instructions.append("<p align='left'>" + this.dish.instructions + "</p>");
   }
 
   this.buildPage();
