@@ -168,7 +168,8 @@ var DinnerModel = function() {
 		     'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'
 		   },
 		   data: {
-		   	 'cuisine' : type,
+		   	 'type' : type,
+         'query' : filter,
 		   	 'instructionsRequired' : true
 		   },
 		   success: function(data) {
