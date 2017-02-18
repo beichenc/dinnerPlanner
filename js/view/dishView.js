@@ -32,8 +32,8 @@ var DishView = function(container, model) {
 
     model.getDish(this.dishID, function(dishResults) {
       _this.dish = dishResults;
-      //console.log(_this.dish);
 
+      // Displaying the title, image, and description
       _this.dishName.html(_this.dish.title);
       _this.dishPic.append("<img src='" + _this.dish.image + "' id='" + _this.dish.title + "' width='250' height='250'>");
       _this.dishDesc.append("<p>" + _this.dish.description +"</p>");
@@ -46,6 +46,7 @@ var DishView = function(container, model) {
       }
       // Displaying the total
       _this.ingredientList.append("<p align='left' style='font-weight: 400; margin-top: 20px'>" + "All ingredients" + "</p>");
+
       model.getPrice(_this.dishID, function(totalPrice) {
         _this.totalPrice = totalPrice;
         _this.ingredientsPrice.append("<p align='left' style='font-weight: 400; margin-top: 20px'>" + _this.totalPrice.toFixed(2) + " SEK</p>");
@@ -57,10 +58,6 @@ var DishView = function(container, model) {
 
     });
 
-    //this.dish = model.getDish(this.dishID);
-    //this.ingredients = model.getIngredients(this.dishID);
-
-    // Displaying the title, image, and description
     //console.log(_this.dish);
     //console.log(_this.ingredients);
 

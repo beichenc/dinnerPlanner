@@ -27,12 +27,12 @@ var DinnerModel = function() {
     }
   }*/
 
+
+  var _this = this;
   // Initially number of guests will be 0
   var numberOfGuests = 0;
   // Initially menu will be an empty dictionary where the key is the type and value is the dish object.
-  var menu = {
-
-  };
+  var menu = [];
 
   var api_results;
   var ingredientsResults;
@@ -145,12 +145,12 @@ var DinnerModel = function() {
 	this.getTotalMenuPrice = function() {
     var TotalMenuPrice = 0.00;
 
-    for (type in menu) {
-      var dish = menu[type];
-      var ingredients = dish.ingredients;
+    for (index in menu) {
+      var dish = menu[index];
+      var ingredients = dish.extendedIngredients;
       for (key in ingredients) {
         var ingredient = ingredients[key];
-        var price = ingredient.price;
+        var price = ingredient.amount;
         TotalMenuPrice += price;
       }
     }
@@ -161,8 +161,18 @@ var DinnerModel = function() {
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
+  // EDIT: Removing this type-check function because the dishes on Spoonacular have many types.
 	this.addDishToMenu = function(id) {
-    var type = this.getDish(id).type;
+    this.getDish(id, function(dishResults) {
+      var dish = dishResults;
+
+      menu[menu.length] = dish;
+      //console.log(menu);
+      //console.log(menu.length);
+      _this.dishAdded.notify();
+    })
+
+    /*var type = this.getDish(id).type;
 
     // If dish doesn't already exist in basket then update the view
     if (!(menu[type] === this.getDish(id))) {
@@ -170,7 +180,7 @@ var DinnerModel = function() {
       menu[type] = this.getDish(id);
       console.log(menu);
       this.dishAdded.notify();
-    }
+    }*/
 	}
 
 	//Removes dish from menu
@@ -237,7 +247,7 @@ var DinnerModel = function() {
          'id' : id
        },
        success: function(data) {
-         console.log(id);
+         //console.log(id);
          console.log(data);
          dishResults = data;
          callBack(dishResults);

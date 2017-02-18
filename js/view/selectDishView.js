@@ -24,17 +24,10 @@ var SelectDishView = function(container, model) {
     }
 
     // Getting data from the model.
-    // To implement later: this data should change depending on what type the user selects in the view.
-
     model.getAllDishes(type, filter, function(api_results) {
       _this.dishes = api_results;
-      console.log(_this.dishes);
-
     });
-    /*model.apiResultsObtained.attach(function(sender, api_results) {
-      this.dishes = api_results;
-    })*/
-
+    
     // Populating the view with images and descriptions
     for (key in _this.dishes) {
 

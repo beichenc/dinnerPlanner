@@ -55,17 +55,38 @@ var SideBarView = function (container, model) {
 		// Erase existing dishes
 		_this.entry.html("");
 
-		// Redisplay updated dishes
-		for (key in this.fullMenu) {
+		// Redisplay updated dishes - PROBLEM: the dish.title appended repeats for the last dish selected.
+		/*for (key in this.fullMenu) {
 			var dish = this.fullMenu[key];
-			var price = model.getPrice(dish.id);
-			_this.entry.append("<div class='col-lg-6'><p>" + dish.name + "</p></div><div id='cost'><p>" + price.toFixed(2) + "</p></div>");
-		}
+			console.log(dish); // This dish variable here refers to different dishes, going through the menu.
+			model.getPrice(dish.id, function(totalPrice) {
+				console.log(dish); // This dish variable here is always referring to the LAST dish in menu.
+				_this.entry.append("<div class='col-lg-6'><p>" + dish.title + "</p></div><div id='cost'><p>" + totalPrice.toFixed(2) + "</p></div>");
+			});
+		}*/
 
+		// To solve the problem, I tried moving the appending dish.title part outside of the model.getPrice, but now the layout is wrong, and also sometimes the price of the second dish comes before the price of the first (does this have to do with loading time?)
+		/*for (key in this.fullMenu) {
+			var dish = this.fullMenu[key];
+			console.log(dish); // This dish variable here refers to different dishes, going through the menu.
+			this.entry.append("<div class='row'><div class='col-lg-7'><p>" + dish.title + "</p></div>");
+			model.getPrice(dish.id, function(totalPrice) {
+				console.log(dish); // This dish variable here is always referring to the LAST dish in menu.
+				_this.entry.append("<div id='cost'><p>" + totalPrice.toFixed(2) + "</p></div></div>");
+			});
+		}*/
+
+		//Problem solved!
+		this.fullMenu.forEach(function(dish, key) {
+			model.getPrice(dish.id, function(totalPrice) {
+				_this.entry.append("<div class='clearfix'><div class='col-lg-7'><p>" + dish.title + "</p></div>" + "<div id='cost'><p>" + totalPrice.toFixed(2) + "</p></div></div>")
+			})
+		})
 	}
 
 	this.redisplayTotalCost = function() {
 		_this.totalCost = model.getTotalMenuPrice();
+		console.log(_this.totalCost);
 		_this.totalNumber[0].innerHTML = "SEK " + _this.totalCost.toFixed(2);
 	}
 
