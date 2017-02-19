@@ -9,8 +9,8 @@ var SelectDishViewController = function(model, selectDishView) {
   });
 
   selectDishView.maindishChoice.click(function() {
-    selectDishView.buildPage("main dish");
-    selectDishView.type = "main dish";
+    selectDishView.buildPage("main course");
+    selectDishView.type = "main course";
   });
 
   selectDishView.dessertChoice.click(function() {

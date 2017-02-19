@@ -26,12 +26,13 @@ var DishView = function(container, model) {
     this.instructions.html("");
 
     // Getting info from model
-    model.getIngredients(this.dishID, function(ingredientsResults) {
+    /*model.getIngredients(this.dishID, function(ingredientsResults) {
       _this.ingredients = ingredientsResults;
-    });
+    });*/
 
     model.getDish(this.dishID, function(dishResults) {
       _this.dish = dishResults;
+      _this.ingredients = dishResults.extendedIngredients;
 
       // Displaying the title, image, and description
       _this.dishName.html(_this.dish.title);

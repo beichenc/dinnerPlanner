@@ -41,7 +41,6 @@ var DinnerModel = function() {
   // Events
   this.numberOfGuestsChanged = new Event(this);
   this.dishAdded = new Event(this);
-  this.apiResultsObtained = new Event(this);
 
   // Methods
 	this.setNumberOfGuests = function(num) {
@@ -165,11 +164,25 @@ var DinnerModel = function() {
 	this.addDishToMenu = function(id) {
     this.getDish(id, function(dishResults) {
       var dish = dishResults;
+      var dishAlreadyInMenu = false;
 
-      menu[menu.length] = dish;
-      //console.log(menu);
-      //console.log(menu.length);
-      _this.dishAdded.notify();
+      for (key in menu) {
+        var dishInMenu = menu[key];
+        console.log(dish);
+        console.log(dishInMenu);
+        // This check here doesn't work... dish is equal to dishInMenu I checked in the console.log, but it still doesn't execute the following.
+        if (dishInMenu === dish) {
+          // Do nothing, dish already in menu;
+          dishAlreadyInMenu = true;
+          console.log("hello");
+        }
+      }
+
+      if (menu.length === 0 || dishAlreadyInMenu === false) {
+          // Add to menu
+          menu[menu.length] = dish;
+          _this.dishAdded.notify();
+      }
     })
 
     /*var type = this.getDish(id).type;
@@ -208,7 +221,6 @@ var DinnerModel = function() {
 		     //console.log(data.results);
 		     api_results = data.results;
          callBack(api_results);
-		     //this.apiResultsObtained.notify(api_results);
 		   },
 		   error: function(data) {
 		     console.log(data)

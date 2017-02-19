@@ -26,17 +26,19 @@ var SelectDishView = function(container, model) {
     // Getting data from the model.
     model.getAllDishes(type, filter, function(api_results) {
       _this.dishes = api_results;
+
+      // Populating the view with images and descriptions
+      for (key in _this.dishes) {
+
+        var dish = _this.dishes[key];
+
+        _this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img dishID='" + dish.id + "' src='https://spoonacular.com/recipeImages/" + dish.image + "' id='" + dish.title.replace(/\s+/g, '') + "' height='150px' width='150px'>" + "<p class='belowPic'>" + dish.title + "</p>" + "<p class='belowPic'>" + dish.description + "</p>" + "</div>");
+        /*_this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + dish.title + "</p>" + "<p>" + dish.description +"</p>" + "</div>")*/
+
+      };
     });
-    
-    // Populating the view with images and descriptions
-    for (key in _this.dishes) {
 
-      var dish = _this.dishes[key];
 
-      _this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img dishID='" + dish.id + "' src='https://spoonacular.com/recipeImages/" + dish.image + "' id='" + dish.title.replace(/\s+/g, '') + "' height='150px' width='150px'>" + "<p class='belowPic'>" + dish.title + "</p>" + "<p class='belowPic'>" + dish.description + "</p>" + "</div>");
-      /*_this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + dish.title + "</p>" + "<p>" + dish.description +"</p>" + "</div>")*/
-
-    };
 
   };
 
