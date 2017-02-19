@@ -10,6 +10,7 @@ var SelectDishView = function(container, model) {
   this.maindishChoice = container.find("#maindishChoice");
   this.dessertChoice = container.find("#dessertChoice");
   this.searchField = container.find("#searchField");
+  this.loadingMsg = container.find(".loadingMsg");
 
   // Build page function that is called every time the page needs to update.
   this.buildPage = function(type, filter) {
@@ -17,14 +18,22 @@ var SelectDishView = function(container, model) {
     //Erasing page
     this.dishesPics.html("");
     this.dishesDesc.html("");
+    this.loadingMsg.html("");
 
     //If first time loaded
     if (type === "") {
       this.dishesPics.append("<p id='pleaseSelect'>Please select a dish type</p>");
     }
 
+    // Display loading message
+    this.loadingMsg.html("<h1 align='left' style='margin-left: 20px'>Loading, please wait</h1>");
+
     // Getting data from the model.
     model.getAllDishes(type, filter, function(api_results) {
+
+      // Finished loading
+      _this.loadingMsg.html("");
+
       _this.dishes = api_results;
 
       // Populating the view with images and descriptions

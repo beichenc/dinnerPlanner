@@ -79,7 +79,7 @@ var SideBarView = function (container, model) {
 		//Problem solved!
 		this.fullMenu.forEach(function(dish, key) {
 			model.getPrice(dish.id, function(totalPrice) {
-				_this.entry.append("<div class='clearfix'><div class='col-lg-7'><p>" + dish.title + "</p></div>" + "<div id='cost'><p>" + totalPrice.toFixed(2) + "</p></div></div>")
+				_this.entry.append("<div class='clearfix'><div class='col-lg-7'><p>" + dish.title + "</p></div>" + "<div id='cost'><p>" + totalPrice.toFixed(2) + " /port</p></div></div>")
 			})
 		})
 	}

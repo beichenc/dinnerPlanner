@@ -1,4 +1,3 @@
-// Is it correct to have sideBarView as a parameter so that I can change the number of guests displayed in sideBarView from this view?
 var DishView = function(container, model) {
 
   var _this = this;
@@ -8,10 +7,12 @@ var DishView = function(container, model) {
   this.dishName = container.find("#dishName");
   this.dishPic = container.find(".dishPic");
   this.dishDesc = container.find(".dishDesc");
+  this.ingredientsTitle = container.find(".ingredientsTitle");
   this.ingredientList = container.find(".dishIngredients");
   this.instructions = container.find(".dishInstructions");
   this.ingredientsPrice = container.find(".ingredientsPrice");
   this.ingredientsPriceTotal = container.find(".ingredientsPriceTotal");
+  this.loadingMsg = container.find(".loadingMsg");
   this.addDishButton = container.find("#addDishButton");
   this.backButton = container.find("#backButton");
   this.container = container;
@@ -19,18 +20,28 @@ var DishView = function(container, model) {
   // Build page every time the page needs to be updated.
   this.buildPage = function() {
     // Erasing the page
+    this.dishName.html("");
     this.dishPic.html("");
     this.dishDesc.html("");
+    this.ingredientsTitle.html("");
     this.ingredientList.html("");
     this.ingredientsPrice.html("");
     this.instructions.html("");
+    this.loadingMsg.html("");
+
 
     // Getting info from model
     /*model.getIngredients(this.dishID, function(ingredientsResults) {
       _this.ingredients = ingredientsResults;
     });*/
 
+    // Display while loading
+    this.loadingMsg.html("<h1>Loading, please wait</h1>")
+
     model.getDish(this.dishID, function(dishResults) {
+      // Finished loading
+      _this.loadingMsg.html("");
+
       _this.dish = dishResults;
       _this.ingredients = dishResults.extendedIngredients;
 
@@ -40,6 +51,7 @@ var DishView = function(container, model) {
       _this.dishDesc.append("<p>" + _this.dish.description +"</p>");
 
       // Displaying the ingredients
+      _this.ingredientsTitle.append("<h1 align='left' style='margin-bottom: 20px' class='marginleft20'>Ingredients</h1>");
       for (key in _this.ingredients) {
         var ingredient = _this.ingredients[key];
         _this.ingredientList.append("<p align='left'>" + ingredient.name + " " + ingredient.amount + " " + ingredient.unit + "</p>");
@@ -58,9 +70,6 @@ var DishView = function(container, model) {
       _this.instructions.append("<p align='left'>" + _this.dish.instructions + "</p>");
 
     });
-
-    //console.log(_this.dish);
-    //console.log(_this.ingredients);
 
   }
 
