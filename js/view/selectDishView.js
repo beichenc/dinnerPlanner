@@ -1,6 +1,7 @@
 var SelectDishView = function(container, model) {
 
   var _this = this;
+  var filter = "";
 
   // Finding the elements in the view HTML.
   this.dishesPics = container.find(".dishesPics");
@@ -15,39 +16,45 @@ var SelectDishView = function(container, model) {
   // Build page function that is called every time the page needs to update.
   this.buildPage = function(type, filter) {
 
-    //Erasing page
-    this.dishesPics.html("");
-    this.dishesDesc.html("");
-    this.loadingMsg.html("");
-
     //If first time loaded
     if (type === "") {
       this.dishesPics.append("<p id='pleaseSelect'>Please select a dish type</p>");
     }
 
-    // Display loading message
-    this.loadingMsg.html("<h1 align='left' style='margin-left: 20px'>Loading, please wait</h1>");
+    else {
 
-    // Getting data from the model.
-    model.getAllDishes(type, filter, function(api_results) {
+      // Erase page
+      this.dishesPics.html("");
 
-      // Finished loading
-      _this.loadingMsg.html("");
+      // Display loading message
+      this.loadingMsg.html("<h1 align='left' style='margin-left: 20px'>Loading, please wait</h1>");
 
-      _this.dishes = api_results;
+      // Getting data from the model.
+      model.getAllDishes(type, filter, function(api_results) {
 
-      // Populating the view with images and descriptions
-      for (key in _this.dishes) {
+        //Erasing page
+        _this.dishesPics.html("");
+        _this.dishesDesc.html("");
 
-        var dish = _this.dishes[key];
+        // Finished loading
+        _this.loadingMsg.html("");
 
-        _this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img dishID='" + dish.id + "' src='https://spoonacular.com/recipeImages/" + dish.image + "' id='" + dish.title.replace(/\s+/g, '') + "' height='150px' width='150px'>" + "<p class='belowPic'>" + dish.title + "</p>" + "<p class='belowPic'>" + dish.description + "</p>" + "</div>");
-        /*_this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + dish.title + "</p>" + "<p>" + dish.description +"</p>" + "</div>")*/
+        _this.dishes = api_results;
 
-      };
-    });
+        // Populating the view with images and descriptions
+        for (key in _this.dishes) {
 
+          var dish = _this.dishes[key];
 
+          _this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img dishID='" + dish.id + "' src='https://spoonacular.com/recipeImages/" + dish.image + "' id='" + dish.title.replace(/\s+/g, '') + "' height='150px' width='150px'>" + "<p class='belowPic'>" + dish.title + "</p>" + "<p class='belowPic'>" + dish.description + "</p>" + "</div>");
+          /*_this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + dish.title + "</p>" + "<p>" + dish.description +"</p>" + "</div>")*/
+
+        };
+      }, function() {
+        _this.loadingMsg.html("");
+        _this.dishesPics.append("<h1>There was some error, uh oh...</h1>");
+      });
+    }
 
   };
 

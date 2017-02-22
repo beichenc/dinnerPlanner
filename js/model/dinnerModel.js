@@ -168,13 +168,11 @@ var DinnerModel = function() {
 
       for (key in menu) {
         var dishInMenu = menu[key];
-        console.log(dish);
-        console.log(dishInMenu);
-        // This check here doesn't work... dish is equal to dishInMenu I checked in the console.log, but it still doesn't execute the following.
-        if (dishInMenu === dish) {
+        console.log(dish.id);
+        console.log(dishInMenu.id);
+        if (dishInMenu.id === dish.id) {
           // Do nothing, dish already in menu;
           dishAlreadyInMenu = true;
-          console.log("hello");
         }
       }
 
@@ -206,7 +204,7 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
   // TESTED
-	this.getAllDishes = function (type, filter, callBack) {
+	this.getAllDishes = function (type, filter, callBack, errorCallBack) {
 		$.ajax( {
 		   url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search',
 		   headers: {
@@ -215,15 +213,14 @@ var DinnerModel = function() {
 		   data: {
 		   	 'type' : type,
          'query' : filter,
-		   	 'instructionsRequired' : true
 		   },
 		   success: function(data) {
-		     //console.log(data.results);
 		     api_results = data.results;
          callBack(api_results);
 		   },
 		   error: function(data) {
 		     console.log(data)
+         errorCallBack();
 		   }
 		 })
 
@@ -263,7 +260,6 @@ var DinnerModel = function() {
          console.log(data);
          dishResults = data;
          callBack(dishResults);
-         //this.apiResultsObtained.notify(api_results);
        },
        error: function(data) {
          console.log(data)

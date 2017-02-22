@@ -4,13 +4,13 @@ var OverviewView = function (container, model) {
 	this.container = container;
 
 	//Show pics and description
-	//console.log(menu);
 
 	this.dishesPics = container.find(".dishesPics");
 	this.dishesDesc = container.find(".dishesDesc");
 	this.backButtonOverview = container.find("#backButtonOverview");
 	this.printFullRecipeButton = container.find("#printFullRecipeButton");
 	this.totalCostDiv = container.find("#totalCostInOverviewDiv");
+	this.loadingMsg = container.find(".loadingMsg");
 
 
 	this.buildPage = function() {
@@ -23,6 +23,7 @@ var OverviewView = function (container, model) {
 		// Get data from model
 		var menu = model.getFullMenu();
 
+
 		// Update new page
 		/*for (key in menu) {
 			var dish = menu[key];
@@ -33,8 +34,14 @@ var OverviewView = function (container, model) {
 			})
 		}*/
 
+		// Display loading message
+		this.loadingMsg.html("<h1>Loading, please wait</h1>");
+
 		menu.forEach(function(dish, key) {
 			model.getPrice(dish.id, function(totalPrice) {
+				// Finished loading
+				_this.loadingMsg.html("");
+
 				_this.dishesPics.append( "<div class='inline' style='word-wrap: break-word; width: 150px'> <img width='150px' height='150px' src= '" + dish.image + "'>" + "<p class='belowPic'>" + dish.title + "</p> <p class='belowPic'> SEK " + (totalPrice * model.getNumberOfGuests()).toFixed(2) + "</p> </div>");
 			})
 		})
