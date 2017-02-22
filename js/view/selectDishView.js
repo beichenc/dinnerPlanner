@@ -46,7 +46,7 @@ var SelectDishView = function(container, model) {
 
           var dish = _this.dishes[key];
 
-          _this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img dishID='" + dish.id + "' src='https://spoonacular.com/recipeImages/" + dish.image + "' id='" + dish.title.replace(/\s+/g, '') + "' height='150px' width='150px'>" + "<p class='belowPic'>" + dish.title + "</p>" + "<p class='belowPic'>" + dish.description + "</p>" + "</div>");
+          _this.dishesPics.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<img dishID='" + dish.id + "' src='https://spoonacular.com/recipeImages/" + dish.image + "' id='" + dish.title.replace(/\s+/g, '') + "' height='150px' width='150px'>" + "<p class='belowPic'>" + dish.title + "</p>" + "</div>");
           /*_this.dishesDesc.append("<div class='inline' style='word-wrap: break-word; width: 150px'>" + "<p>" + dish.title + "</p>" + "<p>" + dish.description +"</p>" + "</div>")*/
 
         };
