@@ -216,6 +216,10 @@ a:hover {
   font-weight: 400;
 }
 
+.belowPic {
+  margin-left: 15px;
+}
+
 
 #desc {
   margin-left: 20px;

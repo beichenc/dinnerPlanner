@@ -27,12 +27,16 @@ var DinnerModel = function() {
     }
   }*/
 
+
+  var _this = this;
   // Initially number of guests will be 0
   var numberOfGuests = 0;
   // Initially menu will be an empty dictionary where the key is the type and value is the dish object.
-  var menu = {
+  var menu = [];
 
-  };
+  var api_results;
+  var ingredientsResults;
+  var dishResult;
 
   // Events
   this.numberOfGuestsChanged = new Event(this);
@@ -90,36 +94,62 @@ var DinnerModel = function() {
 
 
   // Returns all ingredients for a single dish by ID
-  this.getIngredients = function(id) {
-    var dish = this.getDish(id);
+  this.getIngredients = function(id, callBack) {
+    $.ajax( {
+       url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+ id + '/information',
+       headers: {
+         'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'
+       },
+       data: {
+         'id' : id
+       },
+       success: function(data) {
+         console.log(id);
+         console.log(data.extendedIngredients);
+         ingredientsResults = data.extendedIngredients;
+         callBack(ingredientsResults);
+         //this.apiResultsObtained.notify(api_results);
+       },
+       error: function(data) {
+         console.log(data)
+       }
+     })
+
+
+    /*var dish = this.getDish(id);
     var ingredients = dish.ingredients;
-    return ingredients;
+    return ingredients;*/
   }
 
   //Returns the price of the selected dish (all ingredients)
   // TESTED
-  this.getPrice = function(id) {
+  this.getPrice = function(id, callBack) {
     var totalPrice = 0.00;
-    var dish = this.getDish(id);
-    var ingredients = dish.ingredients;
-    for (key in ingredients) {
-      var ingredient = ingredients[key];
-      var price = ingredient.price;
-      totalPrice += price;
-    }
-    return totalPrice;
+    var dish;
+
+    this.getDish(id, function(dishResults) {
+      dish = dishResults;
+      var ingredients = dish.extendedIngredients;
+      for (key in ingredients) {
+        var ingredient = ingredients[key];
+        var price = ingredient.amount; //simplification here, we say price is equal to amount.
+        totalPrice += price;
+      }
+      callBack(totalPrice);
+    })
+
   }
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
     var TotalMenuPrice = 0.00;
 
-    for (type in menu) {
-      var dish = menu[type];
-      var ingredients = dish.ingredients;
+    for (index in menu) {
+      var dish = menu[index];
+      var ingredients = dish.extendedIngredients;
       for (key in ingredients) {
         var ingredient = ingredients[key];
-        var price = ingredient.price;
+        var price = ingredient.amount;
         TotalMenuPrice += price;
       }
     }
@@ -130,14 +160,30 @@ var DinnerModel = function() {
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
+  // EDIT: Removing this type-check function because the dishes on Spoonacular have many types.
 	this.addDishToMenu = function(id) {
-    var type = this.getDish(id).type;
+    this.getDish(id, function(dishResults) {
+      var dish = dishResults;
+      var dishAlreadyInMenu = false;
 
-    //Edit: don't need to check because if it is on the menu it is automatically overwritten.
-    //Check if dish of the type is already on the menu, if it is, remove the old dish.
-    /*if (!menu[type].isEmpty()) {
-      menu[type] === "";
-    }*/
+      for (key in menu) {
+        var dishInMenu = menu[key];
+        console.log(dish.id);
+        console.log(dishInMenu.id);
+        if (dishInMenu.id === dish.id) {
+          // Do nothing, dish already in menu;
+          dishAlreadyInMenu = true;
+        }
+      }
+
+      if (menu.length === 0 || dishAlreadyInMenu === false) {
+          // Add to menu
+          menu[menu.length] = dish;
+          _this.dishAdded.notify();
+      }
+    })
+
+    /*var type = this.getDish(id).type;
 
     // If dish doesn't already exist in basket then update the view
     if (!(menu[type] === this.getDish(id))) {
@@ -145,7 +191,7 @@ var DinnerModel = function() {
       menu[type] = this.getDish(id);
       console.log(menu);
       this.dishAdded.notify();
-    }
+    }*/
 	}
 
 	//Removes dish from menu
@@ -158,33 +204,74 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
   // TESTED
-	this.getAllDishes = function (type,filter) {
-	  return dishes.filter(function(dish) {
-		var found = true;
-		if(filter){
-			found = false;
-			dish.ingredients.forEach(function(ingredient) {
-				if(ingredient.name.indexOf(filter)!=-1) {
+	this.getAllDishes = function (type, filter, callBack, errorCallBack) {
+		$.ajax( {
+		   url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search',
+		   headers: {
+		     'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'
+		   },
+		   data: {
+		   	 'type' : type,
+         'query' : filter,
+		   },
+		   success: function(data) {
+		     api_results = data.results;
+         callBack(api_results);
+		   },
+		   error: function(data) {
+		     console.log(data)
+         errorCallBack();
+		   }
+		 })
+
+
+		  /*return dishes.filter(function(dish) {
+			var found = true;
+			if(filter){
+				found = false;
+				dish.ingredients.forEach(function(ingredient) {
+					if(ingredient.name.indexOf(filter)!=-1) {
+						found = true;
+					}
+				});
+				if(dish.name.indexOf(filter) != -1)
+				{
 					found = true;
 				}
-			});
-			if(dish.name.indexOf(filter) != -1)
-			{
-				found = true;
 			}
-		}
-	  	return dish.type == type && found;
-	  });
+
+		  	return dish.type == type && found;
+		  });*/
 	}
 
 	//function that returns a dish of specific ID
   //TESTED
-	this.getDish = function (id) {
+	this.getDish = function (id, callBack) {
+    $.ajax( {
+       url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+ id + '/information',
+       headers: {
+         'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'
+       },
+       data: {
+         'id' : id
+       },
+       success: function(data) {
+         //console.log(id);
+         console.log(data);
+         dishResults = data;
+         callBack(dishResults);
+       },
+       error: function(data) {
+         console.log(data)
+       }
+     })
+
+    /*
 	  for(key in dishes){
 			if(dishes[key].id == id) {
 				return dishes[key];
 			}
-		}
+		}*/
 	}
 
 
