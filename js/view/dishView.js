@@ -2,7 +2,7 @@
 var DishView = function(container, model) {
 
   var _this = this;
-  this.dishID = 100; // default so there is no error message upon page load
+  this.dishID = 100;   //723984; // default so there is no error message upon page load
   console.log(this.dishID);
 
   this.dishName = container.find("#dishName");

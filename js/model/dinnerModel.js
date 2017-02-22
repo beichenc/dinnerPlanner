@@ -93,10 +93,10 @@ var DinnerModel = function() {
 
 
   // Returns all ingredients for a single dish by ID
-  this.getIngredients = function(id) {
-    var dish = this.getDish(id);
-    var ingredients = dish.ingredients;
-    return ingredients;
+  this.getIngredients = function(id) { 
+    var dish = this.getDish(id); 
+    var ingredients = dish.ingredients; 
+    return ingredients; 
   }
 
   //Returns the price of the selected dish (all ingredients)
@@ -161,7 +161,7 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
   // TESTED
-	this.getAllDishes = function (type,filter, cb) {
+	this.getAllDishes = function (type, filter, cb) {
 		$.ajax( {
 		   url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search',
 		   headers: {
@@ -169,7 +169,8 @@ var DinnerModel = function() {
 		   },
 		   data: {
 		   	 'cuisine' : type,
-		   	 'instructionsRequired' : true
+		   	 'instructionsRequired' : true,
+		   	 'query' : filter
 		   },
 		   success: function(data) {
 		     console.log(data);
