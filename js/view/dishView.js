@@ -48,7 +48,7 @@ var DishView = function(container, model) {
       // Displaying the title, image, and description
       _this.dishName.html(_this.dish.title);
       _this.dishPic.append("<img src='" + _this.dish.image + "' id='" + _this.dish.title + "' width='250' height='250'>");
-      _this.dishDesc.append("<p>" + _this.dish.description +"</p>");
+      //_this.dishDesc.append("<p>" + _this.dish.description +"</p>");
 
       // Displaying the ingredients
       _this.ingredientsTitle.append("<h1 align='left' style='margin-bottom: 20px' class='marginleft20'>Ingredients</h1>");
