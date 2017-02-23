@@ -1,7 +1,6 @@
-
-// Problem: this view controller has to known about two views. Is that ok?
 var SelectDishViewController = function(model, selectDishView) {
 
+  var previousFilter = "";
 
   selectDishView.appetizerChoice.click(function() {
     selectDishView.buildPage("starter", selectDishView.filter);
@@ -20,14 +19,17 @@ var SelectDishViewController = function(model, selectDishView) {
 
   selectDishView.searchField.change(function() {
     var filter = selectDishView.searchField.val();
-    var type = selectDishView.type;
-    selectDishView.buildPage(type, filter);
-    selectDishView.filter = filter;
-  }).keyup(function() {
+    if (filter !== previousFilter) {
+      var type = selectDishView.type;
+      console.log("hello");
+      selectDishView.buildPage(type, filter);
+      selectDishView.filter = filter;
+      previousFilter = filter;
+    }
+  }).keyup(function(e) {
     delay(function() {
       selectDishView.searchField.change();
     }, 600);
-
   });
 
   var delay = (function() {
