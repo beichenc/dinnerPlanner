@@ -1,8 +1,7 @@
 <!-- TODO in Lab 5: Display the dish information including image, Description,
 Instructions, Ingredients and total cost. -->
 
-<div class="loadingGif">
-  <img src="https://d13yacurqjgara.cloudfront.net/users/12755/screenshots/1037374/hex-loader2.gif">
+<div class="loadingGif" ng-show="loading">
 </div>
 
 <!-- DishView, where dish details are displayed -->
@@ -21,7 +20,7 @@ Instructions, Ingredients and total cost. -->
                     </div>
                 </div>
                 <div class="col-lg-7">
-                    <h1 id="dishName">{{dish.title}} HELLO</h1>
+                    <h1 id="dishName">{{dish.title}}</h1>
                     <div class="dishDesc">
 
                     </div>

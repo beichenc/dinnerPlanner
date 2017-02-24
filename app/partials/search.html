@@ -1,6 +1,9 @@
 <!-- TODO in Lab 5: Display the input box for search (you can ignore the type dropdown since BigOven does
 not support it in free version) and list all the dishes that match the search. -->
 
+<div class="loadingGif" ng-show="loading">
+</div>
+
 <!-- SelectDishView, where we select the dishes -->
 <div class="col-lg-8" id="selectDishView">
     <div class="main">
@@ -9,7 +12,7 @@ not support it in free version) and list all the dishes that match the search. -
             <!-- Search input -->
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for..." id="searchField" ng-model="query" ng-change="search(query, type)">
+                    <input type="text" class="form-control" placeholder="Search for..." id="searchField" ng-model="query" ng-model-options='{ debounce: 600 }' ng-change="search(query, type)">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" ng-click="search(query, type)">Search</button>
                     </span>

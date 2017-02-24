@@ -7,6 +7,8 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
   // Check the app.js to figure out what is the paramName in this case
 
   $scope.dishId = $routeParams.dishId;
+  $scope.loading = true;
+
 
   $scope.getDish = function() {
     console.log("searched for a single dish");
@@ -15,8 +17,10 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
       $scope.dish = data;
       $scope.ingredients = data.extendedIngredients;
       $scope.status = "";
+      $scope.loading = false;
     }, function(data) {
       $scope.status = "There was an error";
+      $scope.loading = false;
     })
   }
 
@@ -27,6 +31,8 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
   $scope.getPrice = function() {
     return Dinner.getPrice($scope.dish);
   }
+
+
   // Call the getDish method.
   $scope.getDish();
 
