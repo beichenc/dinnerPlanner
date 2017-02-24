@@ -12,13 +12,8 @@ h1 {
 
 img {
   margin: 15px;
-  /*transition: opacity .5s ease-out;*/
   border-radius: 3px;
 }
-
-/*img:hover {
-  opacity: 0.7;
-}*/
 
 a {
   color: inherit;
@@ -29,6 +24,14 @@ a:hover {
   text-decoration: none;
 }
 
+.dishes img {
+  transition: opacity .5s ease-in-out;
+}
+
+.dishes img:hover {
+  opacity: 0.7;
+
+}
 
 .navbar {
     position: fixed;
