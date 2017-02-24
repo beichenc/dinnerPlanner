@@ -1,0 +1,45 @@
+<!-- Loading Gif -->
+<!--<div class="loadingGif" ng-show="loading">
+</div>-->
+
+<!-- OverviewView, where we see an overview of our selected dishes and their costs -->
+<div class="main marginright70" id="overviewView">
+    <h1 id="titleInOverview">My Dinner: <span id = "numberOfGuests"></span>{{getNumberOfGuests()}} People</h1>
+
+    <!-- Dishes -->
+    <div class="dishes active">
+        <div class="dishesPics">
+          <!-- Pics
+          <div class="inline" style="word-wrap: break-word; width: 150px">
+            <img src="images/meatballs.jpg" id="Meatballs">
+          </div>
+
+          <div class="inline" style="word-wrap: break-word; width: 150px">
+            <img src="images/meatballs.jpg" id="MD3">
+          </div>
+
+          <div class="inline" style="word-wrap: break-word; width: 150px">
+            <img src="images/meatballs.jpg" id="MD3" style="opacity: 1;">
+          </div>
+            -->
+          <div class='inline' style='word-wrap: break-word; width: 150px' ng-repeat="dish in getFullMenu()">
+            <a ng-href="#/dish/{{ dish.id }}"><img ng-src="{{dish.image}}" height="150px" width="150px"/></a>
+            <p class="belowPic">{{dish.title}}</p>
+            <p class="belowPic">{{getPrice(dish) * getNumberOfGuests() | number: 2}} SEK</p>
+          </div>
+        </div>
+
+    </div>
+    <div class="separatorInOverview">
+    </div>
+
+    <div id="totalCostInOverviewDiv">
+      <p id='totalCostInOverview'>Total: {{getTotalMenuPrice() | number: 2}} SEK</p>
+    </div>
+
+    <div>
+      <!-- Trying to implement a back button that is equivalent to the browser's back button, but not working -->
+      <a href="#/search"><back-button back="back"></back-button></a>
+      <button id="printFullRecipeButton" class="btn">Print Full Recipe</button>
+    </div>
+</div>

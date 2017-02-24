@@ -14,12 +14,12 @@ dinnerPlannerApp.controller('SearchCtrl', function ($scope,Dinner) {
 
   $scope.search = function(query, type) {
     console.log("searched " + query + " " + type);
-    $scope.status = "Searching...";
+    //$scope.status = "Searching...";
     $scope.loading = true;
     Dinner.getAllDishes.get({query: query, type: type}, function(data) {
       $scope.dishes = data.results;
       console.log(data.results);
-      $scope.status = "Showing " + data.results.length + " results";
+      //$scope.status = "Showing " + data.results.length + " results";
       console.log("success");
       $scope.loading = false;
     }, function(data) {
