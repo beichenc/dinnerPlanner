@@ -1,9 +1,61 @@
-People: <input type="number" ng-model="numberOfGuests" ng-change="setNumberOfGuest(numberOfGuests)"/>
+<!-- People: <input type="number" ng-model="numberOfGuests" ng-change="setNumberOfGuests(numberOfGuests)"/> -->
 
 <!-- TODO in Lab 5: Display the items on the menu with cost for each -->
 
+<!-- SideBarView, where we see our basket of selected dishes, their costs and the total cost -->
+<div class="col-lg-4" id="sideBarView">
+    <div class="aside" >
+        <h1>My dinner</h1>
 
-<!-- Displaying number of guests both in input box and here is redundant. It is here only for the example
-purpose so you can see how some information from the model can be retrieved. In Lab 5 you will replace
-this with Total price of the menu -->
-Total number of guest: {{getNumberOfGuests()}}
+        <div>
+    			<div class="someText">
+    				Number of guests: <span id="numberOfGuests">{{getNumberOfGuests()}}</span>
+    			</div>
+    			<div>
+              <button id="minusGuest" class="btn" ng-click="decreaseNumberOfGuests()"><span class="glyphicon glyphicon-minus"></span></button>
+    				<button id="plusGuest" class="btn" ng-click="increaseNumberOfGuests()"><span class="glyphicon glyphicon-plus"></span></button>
+    			</div>
+    		</div>
+
+        <div class="row nameAndCost">
+            <div class="col-lg-6">
+                <p>Dish name</p>
+            </div>
+            <div id="cost">
+                <p>Cost</p>
+            </div>
+        </div>
+
+        <div class="row nameAndCostEntry">
+            <!--<div class="col-lg-6">
+                <p>Pending</p>
+            </div>
+            <div id="cost">
+                <p>0.00</p>
+            </div>-->
+            <div ng-repeat="dish in getFullMenu()">
+              <div class="col-lg-7">
+                <p>{{dish.title}}</p>
+              </div>
+              <div id="cost">
+                <!-- Problem with getting the price... it results in 10 digest error if I have the full code in the service. -->
+                <p>{{getPrice(dish) | number: 2}} SEK</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="row nameAndCostTotal">
+            <div class="col-lg-6">
+                <p>Total</p>
+            </div>
+            <div id="totalCost">
+              <p>{{getTotalMenuPrice() | number: 2}} SEK</p>
+            </div>
+        </div>
+
+        <div id="confirmDinnerButton">
+            <button id="confirmDinner" class="btn">Confirm dinner</button>
+			  </div>
+
+    </div>
+</div>

@@ -1,5 +1,56 @@
-<!-- We include the sidebar as it is shared across two screens. -->
-<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
-
 <!-- TODO in Lab 5: Display the input box for search (you can ignore the type dropdown since BigOven does
 not support it in free version) and list all the dishes that match the search. -->
+
+<!-- SelectDishView, where we select the dishes -->
+<div class="col-lg-8" id="selectDishView">
+    <div class="main">
+        <h1 id="title">Select dish</h1>
+        <div class="row">
+            <!-- Search input -->
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." id="searchField" ng-model="query" ng-change="search(query, type)">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="search(query, type)">Search</button>
+                    </span>
+                </div>
+            </div>
+            <!-- Split button -->
+            <div class="btn-group">
+                <button type="button" class="btn btn-default">Choose dish type</button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" ng-model="type">
+                    <li id="appetizerChoice" ng-click="search(query, 'starter')"><a>Appetizer</a></li>
+                    <li id="maindishChoice" ng-click="search(query, 'main course')"><a>Main dish</a></li>
+                    <li id="dessertChoice" ng-click="search(query, 'dessert')"><a>Dessert</a></li>
+                    <!--<li id="drinksChoice"><a href="#">Drinks</a></li>-->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Loading message -->
+        <div class="loadingMsg">
+           <!-- Loaded with JavaScript-->
+        </div>
+
+        <!-- Dishes -->
+        <div class="dishes active">
+            <p>{{status}}</p>
+            <div class="dishesPics">
+              <div class='inline' style='word-wrap: break-word; width: 150px' ng-repeat="dish in dishes">
+                <a ng-href="#/dish/{{ dish.id }}"><img ng-src="https://spoonacular.com/recipeImages/{{dish.image}}" height="150px" width="150px"/></a>
+                <p class="belowPic">{{dish.title}}</p>
+              </div>
+            </div>
+            <div class="dishesDesc">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- We include the sidebar as it is shared across two screens. -->
+<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>

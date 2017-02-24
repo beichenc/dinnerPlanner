@@ -1,8 +1,86 @@
-<!-- We include the sidebar as it is shared across two screens. -->
-<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
-
-<!-- Testing -->
-<h1> {{getNumberOfGuests()}} </h1>
-
 <!-- TODO in Lab 5: Display the dish information including image, Description,
 Instructions, Ingredients and total cost. -->
+
+<div class="loadingGif">
+  <img src="https://d13yacurqjgara.cloudfront.net/users/12755/screenshots/1037374/hex-loader2.gif">
+</div>
+
+<!-- DishView, where dish details are displayed -->
+<div class="col-lg-8" id="dishView">
+    <div class="main" >
+        <!-- Dishes -->
+        <div class="dish">
+
+            <div class="loadingMsg">
+               <!-- Loaded with JavaScript-->
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="dishPic">
+                      <img ng-src="{{dish.image}}" width="250px" height="250px"/>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <h1 id="dishName">{{dish.title}} HELLO</h1>
+                    <div class="dishDesc">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="ingredientsTitle">
+                <h1 align='left' style='margin-bottom: 20px' class="marginleft20">Ingredients</h1>
+
+            </div>
+
+            <!-- Ingredients and price -->
+            <div class="row">
+                <div class="col-lg-10">
+
+                    <div class="dishIngredients" ng-repeat="ingredient in ingredients">
+
+                      <p align='left'> {{ingredient.name}}, {{ingredient.amount}} {{ingredient.unit}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ingredientsPrice" ng-repeat="ingredient in ingredients">
+                        <p align='left'> {{ingredient.amount | number:2}} SEK</p>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Total price -->
+            <div class="row">
+                <div class="col-lg-10">
+
+                    <div class="dishIngredientsTotal">
+
+                      <p align='left' class="font400 marginleft20 margintop20">All ingredients</p>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ingredientsPrice margintop20">
+                        <!-- Price is wrong, same problem with getPrice() as in sidebar. Also, not sure if it's correct to have getPrice in both dishCtrl and dinnerCtrl... -->
+                        <p align='left'> {{getPrice() | number:2}} SEK</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="separator">
+            </div>
+            <div class="dishInstructions">
+              <h1 align='left' style='margin-bottom: 20px'>Instructions</h1>
+              <p align='left' style='margin-right: 20px'> {{dish.instructions}} </p>
+            </div>
+
+            <div class="navButtons clearfix">
+                <a ng-href="#/search"><button class="btn pull-left" id="backButton">Back to select dish</button></a>
+                <button class="btn pull-right" id="addDishButton" ng-click="addDishToMenu()">Add dish to basket</button>
+      			</div>
+
+        </div>
+    </div>
+</div>
+
+<!-- We include the sidebar as it is shared across two screens. -->
+<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
