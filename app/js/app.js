@@ -8,6 +8,8 @@
 // also see that we included separate JavaScript files for these modules. Angular
 // has other core modules that you might want to use and explore when you go deeper
 // into developing Angular applications. For this lab, these two will suffice.
+
+// Added ngAnimate to test
 var dinnerPlannerApp = angular.module('dinnerPlanner', ['ngRoute','ngResource', 'ngAnimate']);
 
 

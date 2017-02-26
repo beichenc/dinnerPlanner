@@ -145,6 +145,30 @@ a:hover {
   margin-top: 20px;
 }
 
+.nameAndCostEntry {
+  padding-top: 7px;
+  transition: all linear 0.2s;
+}
+
+.nameAndCostEntry.ng-move,
+.nameAndCostEntry.ng-enter,
+.nameAndCostEntry.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.nameAndCostEntry.ng-leave.ng-leave-active,
+.nameAndCostEntry.ng-move,
+.nameAndCostEntry.ng-enter {
+  opacity:0;
+}
+
+.nameAndCostEntry.ng-leave,
+.nameAndCostEntry.ng-move.ng-move-active,
+.nameAndCostEntry.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
 .nameAndCostEntry.selected {
   background-color: #D8F0D8;
   border-radius: 3px;

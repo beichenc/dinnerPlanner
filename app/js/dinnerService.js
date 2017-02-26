@@ -170,6 +170,9 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
 
     var dish = this.getDish.get({id: id});
     var dishAlreadyInMenu = false;
+    console.log(dish);
+    // Why is the dish.id undefined?
+    console.log(dish.id);
 
     for (key in menu) {
       var dishInMenu = menu[key];
