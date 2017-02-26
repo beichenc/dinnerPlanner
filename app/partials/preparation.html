@@ -1,0 +1,33 @@
+<!-- PreparationView, where we see our selected dishes and how to prepare them -->
+<div class="main marginright70" id="preparationView">
+<h1 id="titleInPreparationView">My Dinner: <span id = "numberOfGuests"></span>{{getNumberOfGuests()}} People</h1>
+
+
+		<div id="preparationList">
+
+      <div class='clearfix' ng-repeat="dish in getFullMenu()">
+        <div class='col-lg-2'>
+          <div class='inline' style='word-wrap: break-word; width: 150px'>
+            <img src="{{dish.image}}" width='150px' height='150px'>
+          </div>
+        </div>
+        <div class='col-lg-4'>
+          <div class='inline marginleft20' style='word-wrap: break-word; width: 250px'>
+            <p style='font-size: 28px' ><b>{{dish.title}}</b></p>
+          </div>
+        </div>
+        <div class='col-lg-6'>
+          <div class='inline' style='word-wrap: break-word; width: 400px'>
+            <p style='font-size: 20px'>Preparation</p>
+            <p>{{dish.instructions}}</p>
+          </div>
+        </div>
+      </div>
+
+		</div>
+
+		<div class="">
+				<a href="#/overview"><button id="backButtonPrep" class="btn">Back</button></a>
+		</div>
+
+</div>
