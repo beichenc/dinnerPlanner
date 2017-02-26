@@ -214,8 +214,15 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-    var type = getDish(id).type;
-    menu[type] === "";
+    /*var type = getDish(id).type;
+    menu[type] === "";*/
+    console.log("removed");
+    for (var i = 0; i < menu.length; i++) {
+      var dish = menu[i];
+      if (dish.id === id) {
+        menu.splice(i,1);
+      }
+    }
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")

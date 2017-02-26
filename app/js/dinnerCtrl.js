@@ -2,7 +2,39 @@
 // display or modify the dinner menu
 dinnerPlannerApp.controller('DinnerCtrl', function ($scope,Dinner) {
 
-  
+  /*console.log($('.nameAndCostEntries') + "yeeeeeeeees");
+
+  $('.nameAndCostEntry').on('click', function() {
+    $(this).toggleClass('selected');
+    console.log("selected");
+  })*/
+  $scope.markedSelectedDishes = [];
+
+  $scope.markASelectedDish = function(dishId) {
+    $('#'+dishId+'Entry').toggleClass('selected');
+    if ($('#'+dishId+'Entry').hasClass('selected')) {
+      $scope.markedSelectedDishes.push(dishId);
+    } else {
+      for (var i = 0; i < $scope.markedSelectedDishes.length; i++) {
+        var markedDishId = $scope.markedSelectedDishes[i];
+        if (dishId === markedDishId) {
+          $scope.markedSelectedDishes.splice(i,1);
+        }
+      }
+    }
+    console.log("marked dishes: " + $scope.markedSelectedDishes);
+  }
+
+  $scope.removeMarkedFromMenu = function() {
+    console.log("removeMarkedFromMenu clicked");
+    for (var i = 0; i < $scope.markedSelectedDishes.length; i++) {
+      var dishId = $scope.markedSelectedDishes[i];
+      console.log(dishId);
+      $scope.removeDishFromMenu(dishId);
+      $scope.markedSelectedDishes.splice(i,1);
+    }
+  }
+
 
   $scope.numberOfGuests = Dinner.getNumberOfGuests();
 
@@ -32,6 +64,10 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope,Dinner) {
 
   $scope.getTotalMenuPrice = function() {
     return Dinner.getTotalMenuPrice();
+  }
+
+  $scope.removeDishFromMenu = function(id) {
+    Dinner.removeDishFromMenu(id);
   }
 
   /*$scope.addDishToMenu = function(dishId) {

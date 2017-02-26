@@ -139,10 +139,15 @@ a:hover {
   border-bottom: 1px solid #5C5C5C;
 }
 
-.nameAndCostEntry {
+.nameAndCostEntries {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 20px;
+}
+
+.nameAndCostEntry.selected {
+  background-color: #D8F0D8;
+  border-radius: 3px;
 }
 
 .nameAndCostTotal {

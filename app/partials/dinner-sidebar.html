@@ -26,14 +26,8 @@
             </div>
         </div>
 
-        <div class="row nameAndCostEntry">
-            <!--<div class="col-lg-6">
-                <p>Pending</p>
-            </div>
-            <div id="cost">
-                <p>0.00</p>
-            </div>-->
-            <div ng-repeat="dish in getFullMenu()">
+        <div class="row nameAndCostEntries">
+            <div class="nameAndCostEntry clearfix" id="{{dish.id}}Entry" ng-repeat="dish in getFullMenu()" ng-click="markASelectedDish(dish.id)">
               <div class="col-lg-7">
                 <p>{{dish.title}}</p>
               </div>
@@ -54,6 +48,7 @@
         </div>
 
         <div id="confirmDinnerButton">
+            <button id="confirmDinner" class="btn" ng-click="removeMarkedFromMenu()">Remove dish</button>
             <a href="#/overview"><button id="confirmDinner" class="btn">Confirm dinner</button></a>
 			  </div>
 
