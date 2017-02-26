@@ -26,13 +26,13 @@ dinnerPlannerApp.controller('DinnerCtrl', function ($scope,Dinner) {
   }
 
   $scope.removeMarkedFromMenu = function() {
-    console.log("removeMarkedFromMenu clicked");
+    console.log($scope.markedSelectedDishes.length);
     for (var i = 0; i < $scope.markedSelectedDishes.length; i++) {
       var dishId = $scope.markedSelectedDishes[i];
       console.log(dishId);
       $scope.removeDishFromMenu(dishId);
-      $scope.markedSelectedDishes.splice(i,1);
     }
+    $scope.markedSelectedDishes = [];
   }
 
 
