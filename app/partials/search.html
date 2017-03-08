@@ -5,6 +5,7 @@
 <!-- SelectDishView, where we select the dishes -->
 <div class="col-lg-8" id="selectDishView">
     <div class="main">
+
         <h1 id="title">Select dish</h1>
         <div class="row">
             <!-- Search input -->
@@ -37,7 +38,7 @@
             <p>{{status}}</p>
             <div class="dishesPics">
               <div class='inline' style='word-wrap: break-word; width: 150px' ng-repeat="dish in dishes">
-                <a ng-href="#/dish/{{ dish.id }}"><img ng-src="https://spoonacular.com/recipeImages/{{dish.image}}" height="150px" width="150px"/></a>
+                <a ng-href="#!/dish/{{ dish.id }}"><img ng-src="https://spoonacular.com/recipeImages/{{dish.image}}" height="150px" width="150px"/></a>
                 <p class="belowPic">{{dish.title}}</p>
               </div>
             </div>

@@ -8,9 +8,9 @@ dinnerPlannerApp.controller('SearchCtrl', function ($scope,Dinner) {
   $scope.query = "";
   $scope.loading = false;
 
-  $scope.setLoadingToTrue = function() {
+  /*$scope.setLoadingToTrue = function() {
     $scope.loading = true;
-  }
+  }*/
 
   $scope.search = function(query, type) {
     console.log("searched " + query + " " + type);
@@ -28,5 +28,6 @@ dinnerPlannerApp.controller('SearchCtrl', function ($scope,Dinner) {
       $scope.loading = false;
     });
   }
+
 
 });

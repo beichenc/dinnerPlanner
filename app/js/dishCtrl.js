@@ -8,6 +8,7 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
 
   $scope.dishId = $routeParams.dishId;
   $scope.loading = true;
+  $scope.totalPrice = 0;
 
 
   $scope.getDish = function() {
@@ -15,6 +16,8 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
     $scope.status = "Loading...";
     Dinner.getDish.get({id: $scope.dishId}, function(data) {
       $scope.dish = data;
+      $scope.getPrice();
+
       $scope.ingredients = data.extendedIngredients;
       $scope.status = "";
       $scope.loading = false;
@@ -29,11 +32,18 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
   }
 
   $scope.getPrice = function() {
-    return Dinner.getPrice($scope.dish);
+    $scope.totalPrice = Dinner.getPrice($scope.dish);
+    console.log($scope.totalPrice);
+  }
+
+  $scope.showCookies = function() {
+    console.log(Dinner.getCookies());
   }
 
 
   // Call the getDish method.
   $scope.getDish();
+
+
 
 });

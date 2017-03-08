@@ -10,7 +10,7 @@
 // into developing Angular applications. For this lab, these two will suffice.
 
 // Added ngAnimate to test
-var dinnerPlannerApp = angular.module('dinnerPlanner', ['ngRoute','ngResource', 'ngAnimate']);
+var dinnerPlannerApp = angular.module('dinnerPlanner', ['ngRoute','ngResource', 'ngCookies', 'ngAnimate']);
 
 
 // Here we configure our application module and more specifically our $routeProvider.
@@ -50,7 +50,6 @@ dinnerPlannerApp.config(['$routeProvider',
         templateUrl: 'partials/dish.html',
         controller: 'DishCtrl'
       }).
-      // TODO in Lab 5: add more conditions for the last two screens (overview and preparation)
       when('/overview', {
         templateUrl: 'partials/overview.html',
         controller: 'DinnerCtrl'

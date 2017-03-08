@@ -27,13 +27,12 @@
         </div>
 
         <div class="row nameAndCostEntries">
-            <div class="nameAndCostEntry clearfix" id="{{dish.id}}Entry" ng-repeat="dish in getFullMenu()" ng-click="markASelectedDish(dish.id)">
+            <div class="nameAndCostEntry clearfix" id="{{dish.id}}Entry" ng-repeat="dish in menu" >
               <div class="col-lg-7">
-                <p>{{dish.title}}</p>
+                <p ng-click="markASelectedDish(dish.id, $event)">{{dish.title}}</p>
               </div>
               <div id="cost">
-                <!-- Problem with getting the price... it results in 10 digest error if I have the full code in the service. -->
-                <p>{{getPrice(dish) | number: 2}} SEK</p>
+                <p ng-click="markASelectedDish(dish.id, $event)">{{getPrice(dish) | number: 2}} SEK</p>
               </div>
             </div>
         </div>
@@ -49,7 +48,7 @@
 
         <div id="confirmDinnerButton">
             <button id="confirmDinner" class="btn" ng-click="removeMarkedFromMenu()">Remove dish</button>
-            <a href="#/overview"><button id="confirmDinner" class="btn">Confirm dinner</button></a>
+            <a href="#!/overview"><button id="confirmDinner" class="btn">Confirm dinner</button></a>
 			  </div>
 
     </div>
