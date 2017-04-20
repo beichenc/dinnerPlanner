@@ -1,6 +1,9 @@
 # This file is a mashup of different .gitignores from the
 # github.com/github/gitignore repo.
 
+/node_modules
+/app
+
 ### JAVA ###
 *.class
 
